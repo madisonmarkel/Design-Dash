@@ -1,0 +1,34 @@
+/* HEADER */
+.App-header {
+  background-color: #2e3648;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  min-height: 50%;
+  padding-bottom: 9px;
+}
+.App-header h1 {
+  float:right;
+  padding:0 1em;
+}
+/* MAIN APP CONTAINER */
+.main_app {
+  max-width: 100%;
+  margin:0 auto;
+}
+
+/* NAVIGATION */
+.navigation {
+  background:#eee;
+  float:left;
+  padding: 1em;
+  height: 100%;
+}
+
+/* MAIN MAIN */
+.searches {
+  margin:0 auto;
+  padding:1em;
+}
