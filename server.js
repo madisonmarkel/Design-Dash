@@ -1,293 +1,66 @@
-var express = require("express");
-var logger = require("morgan");
-var mongoose = require("mongoose");
-var exphbs = require("express-handlebars");
-var app = express();
+//https://medium.freecodecamp.org/how-to-make-create-react-app-work-with-a-node-backend-api-7c5c48acb1b0
 
-app.engine("handlebars", exphbs({
-  defaultLayout: "main"
-}));
-app.set("view engine", "handlebars");
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = process.env.PORT || 5000;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+//=================================================================================================================
 
-var db = require("./models");
+app.get('/pixabay', (req, response) => {
+  //res.send({ express: 'Hello From Express' });
+  $( "#pixabay_submit" ).click(function() {
+    event.preventDefault();
+    var userInput = $("#pixabay_user_input").val().trim();
 
-//var PORT = 3000;
+    var queryURL = 'https://pixabay.com/api/?key="' + process.env.PIXABAY_API_KEY + "&q=" + userInput + '"&image_type=photo"';
+    $.ajax({
+        method: "GET",
+        url: queryURL,
+        data: {
 
+        }
+    }).then(function(response) {
+        console.log(response);
+        var results = response.data;
 
-// Initialize Express
-
-// Configure middleware
-
-// Use morgan logger for logging requests
-app.use(logger("dev"));
-// Parse request body as JSON
-app.use(express.urlencoded({
-  extended: true
-}));
-app.use(express.json());
-// Make public a static folder
-app.use(express.static("public"));
-
-// Require all models
-
-// Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/nprScraper", {
-//   useNewUrlParser: true
-// });
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nprScraper";
-
-mongoose.connect(MONGODB_URI);
-
-
-// =================================== ROUTES
-
-// HOME
-app.get("/", function (req, res) {
-  res.render("index");
-});
-
-// ================== NPR SCRAPE
-app.get("/scrape", function (req, res) {
-  // Grab the body of the html with axios
-  axios.get("https://www.npr.org/").then(function (response) {
-    // Load NPR into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(response.data);
-
-    // grabbing class we want to scrape
-    $(".story-text").each(function (i, element) {
-
-      // Save an empty result object
-      var result = {};
-
-      // narrowing down what we want out of div class
-      result.title = $(this).children("a").children("h3").text();
-      result.link = $(this).children("a").attr("href");
-      result.summary = $(this).children("a").children("p").text();
-
-      // Create a new Article (linkingn to Article.js) using the `result` object built from scraping
-      db.Article.create(result)
-        .then(function (dbArticle) {
-          // View the added result in the console
-          console.log(dbArticle);
-        })
-        .catch(function (err) {
-          // If an error occurred, log it
-          console.log(err);
-        });
+        for (var i=0; i < results.length; i++) {
+        }
     });
-
-    // Send a message to the client
-    res.send("Scrape Complete");
   });
 });
 
-// Route for getting all Articles from the db
-app.get("/articles", function (req, res) {
-  db.Article.find({})
-    .then(function (dbScrape) {
-      // If all Notes are successfully found, send them back to the client
-      res.json(dbScrape);
-    })
-    .catch(function (err) {
-      // If an error occurs, send the error back to the client
-      res.json(err);
-    });
-});
-
-// Route for grabbing a specific Article by id, populate it with it's note
-app.get("/articles/:id", function (req, res) {
-  db.Article.findOne({
-      _id: req.params.id
-    })
-    .populate("note")
-    .then(function (dbScrapeInfo) {
-      res.json(dbScrapeInfo);
-    })
-    .catch(function (error) {
-      res.json(error);
-    })
-});
-
-// Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function (req, res) {
-  db.Note.create(req.body)
-    .then(function (dbNote) {
-      return db.Article.findOneAndUpdate({
-        _id: req.params.id
-      }, {
-        note: dbNote._id
-      }, {
-        new: true
-      });
-    })
-    .then(function (dbArticle) {
-      // If the User was updated successfully, send it back to the client
-      res.json(dbArticle);
-    })
-    .catch(function (err) {
-      // If an error occurs, send it back to the client
-      res.json(err);
-    });
-
-});
-
-// SEE ARTICLE NOTES
-app.get("/notes/:id", function (req, res) {
-  db.Article.findOne({
-      _id: req.params.id
-    })
-    .populate("note")
-    .then(function (dbScrapeInfo) {
-      res.render("notes", {
-        articleNotes: dbScrapeInfo
-      });
-    }).catch(function (error) {
-      res.json(error);
-    })
-});
-
-// SEE ALL NOTES
-app.get("/notes/", function (req, res) {
-  db.Note.find({})
-    .populate("note")
-    .then(function (dbScrapeInfo) {
-      //res.json(dbScrapeInfo);
-      res.render("allnotes", {
-        articleNotes: dbScrapeInfo
-      });
-    }).catch(function (error) {
-      res.json(error);
-    })
-});
-
-// NOTES DELETE ROUTE
-app.delete("/notes/:id", function (req, res) {
-  console.log("DELTEROUTE");
-  db.Note.findOne({
-    _id: req.params.id
-  }).deleteOne()
-    //db.Saved.deleteOne({_id: req.params.id})
-    .then(function (dbNotes) {
-      // View the added result in the console
-      console.log(dbNotes);
-      return db.Saved.findOneAndUpdate({
-        _id: req.params.id
-      }, {
-        note: dbNotes._id
-      }, {
-        new: true
-      });
-    })
-    .then(function (dbNotes) {
-      // If the User was updated successfully, send it back to the client
-      //res.json(dbNotes);
-      res.render("saved", {
-        savedArticles: dbNotes
-      });
-    })
-    .catch(function (err) {
-      // If an error occurred, log it
-      console.log(err);
-    });
+app.get('/api/pixabay', (req, res) => {
+    
 })
+// //COLORMIND.IO: http://colormind.io/api-access/
+// var url = "http://colormind.io/api/";
+// var data = {
+//   model: "default",
+//   input: [
+//     [44, 43, 44],
+//     [90, 83, 82], "N", "N", "N"
+//   ]
+// }
 
-// SAVED POST ROUTE
-app.post("/saved/:id", function (req, res) {
-  db.Saved.create(req.body)
-    .then(function (dbSaved) {
-      // View the added result in the console
-      console.log(dbSaved);
-      return db.Article.findOneAndUpdate({
-        _id: req.params.id
-      }, {
-        saved: dbSaved._id
-      }, {
-        new: true
-      });
-    })
-    .then(function (dbSaved) {
-      // If the User was updated successfully, send it back to the client
-      //res.json(dbSaved);
-      res.render("saved", {
-        savedArticles: dbSaved
-      });
-    })
-    .catch(function (err) {
-      // If an error occurred, log it
-      console.log(err);
-    });
-})
+// var http = new XMLHttpRequest();
 
-// INDIVIDUAL SAVED ROUTE GET FOR DELETE BUTTONS
-app.get("/saved/:id", function (req, res) {
-  db.Saved.findOne({
-      _id: req.params.id
-    })
-    .populate("note")
-    .then(function (dbScrapeInfo) {
-      res.render("saved", {
-        savedArticles: dbScrapeInfo
-      });
-    }).catch(function (error) {
-      res.json(error);
-    })
+// http.onreadystatechange = function () {
+//   if (http.readyState == 4 && http.status == 200) {
+//     var palette = JSON.parse(http.responseText).result;
+//   }
+// }
+
+http.open("POST", url, true);
+http.send(JSON.stringify(data));
+
+app.post('/brand', (req, res) => {
+  console.log(req.body);
+  res.send(
+    `I received your POST request. This is what you sent me: ${req.body.post}`,
+  );
 });
 
-// SAVED GET ROUTE
-app.get("/saved", function (req, res) {
-  db.Saved.find({})
-    .populate("saved")
-    .then(function (dbScrapeInfo) {
-      //res.json(dbScrapeInfo);
-      console.log(dbScrapeInfo);
-      res.render("saved", {
-        savedArticles: dbScrapeInfo
-      });
-
-    })
-    .catch(function (error) {
-      res.json(error);
-    })
-})
-
-// SAVED DELETE ROUTE
-app.delete("/saved/:id", function (req, res) {
-  console.log("DELTEROUTE");
-  db.Saved.findOne({
-    _id: req.params.id
-  }).deleteOne()
-    //db.Saved.deleteOne({_id: req.params.id})
-    .then(function (dbSaved) {
-      // View the added result in the console
-      console.log(dbSaved);
-      return db.Saved.findOneAndUpdate({
-        _id: req.params.id
-      }, {
-        saved: dbSaved._id
-      }, {
-        new: true
-      });
-    })
-    .then(function (dbSaved) {
-      // If the User was updated successfully, send it back to the client
-      //res.json(dbSaved);
-      res.render("saved", {
-        savedArticles: dbSaved
-      });
-    })
-    .catch(function (err) {
-      // If an error occurred, log it
-      console.log(err);
-    });
-})
-
-// Start the server
-app.listen(process.env.PORT || 3000, function () {
-  console.log("App running on port "  + "!");
-});
+app.listen(port, () => console.log(`Listening on port ${port}`));
