@@ -2,6 +2,9 @@
 //https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
 
 import React, {Component} from "react";
+// import PixabayAPI, { callAPI } from "./PixabayAPI";
+// import PixabayAPI from "./PixabayAPI";
+import callAPI from "./PixabayAPI";
 // import "./Status.css";
 
 // STATEFUL 
@@ -17,24 +20,50 @@ class PixabaySearch extends Component {
         // This binding is necessary to make `this` work in the callback
         this.handleClick = this.handleClick.bind(this);
       }
-  
-    handleClick() {
-        fetch('https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=yellow+flowers&image_type=photo')
-        .then(results => {
-            return results.json();
-        }).then(data => {
-            let pictures = data.results.map((pic) => {
-                return (
-                    <div key={pic.results}>
-                        <img src={pic.picture.medium} />
-                    </div>
-                )
+// WORK(ISH) ON DID MOUNT BUT WE WANT IT TO WORK ON A CLICK
+        makeRequest = (pictures) => {
+            callAPI(pictures)
+                .then(function(res) {
+                    this.setState(function (){
+                        return{
+                            pictures:res
+                        }
+                    })
+                }.bind(this));
+        }
+
+        handleClick() {
+        //componentDidMount(){
+            this.makeRequest(this.state.pictures)
+        }
+
+        setPhotos = (myPhotos) =>{
+            this.setState(function () {
+                return{
+                    pictures:myPhotos
+                }
             })
-            //set the new state to the data that we’ve pulled
-            this.setState({pictures: pictures});
-            console.log("state", this.state.pictures);
-        })
-      }
+        }
+
+
+    // handleClick() {
+    //     //fetch('https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=yellow+flowers&image_type=photo')
+    //     fetch(`https://pixabay.com/api/?key=10973637-11d4c82c5cd38dd84074bb946&q=yellow+flowers&image_type=photo`)
+    //     .then(results => {
+    //         return results.json();
+    //     }).then(data => {
+    //         let pictures = data.results.map((pics) => {
+    //             return (
+    //                 <div key={pics.results}>
+    //                     <img alt={pics.hits.tags} src={pics.hits.previewURL} />
+    //                 </div>
+    //             )
+    //         })
+    //         //set the new state to the data that we’ve pulled
+    //         this.setState({pictures: pictures});
+    //         console.log("state", this.state.pictures);
+    //     })
+    //   }
 
     render() {
         return(
