@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navigation from "./Navigation";
 import Header from "./Header";
+import PixabaySearch from "./PixabaySearch";
 
 class App extends Component {
   state = {
@@ -56,16 +57,7 @@ class App extends Component {
             <Navigation/>
 
             <div className="searches">
-              <div className="pixabay">
-                <h2>Search for Images</h2>
-                  <input
-                    id="pixabay_user_input"
-                    type="text"
-                    value={this.state.post}
-                    onChange={e => this.setState({ post: e.target.value })}
-                  />
-                  <button type="submit" id="pixabay_submit">Search</button>
-                  <p>{this.state.responseToPost}</p>
+              <PixabaySearch/>
               </div>
 
               {/* <p>{this.state.response}</p>
@@ -83,7 +75,6 @@ class App extends Component {
               <p>{this.state.responseToPost}</p> */}
             </div>
          </div>
-      </div>
     );
   }
 }
