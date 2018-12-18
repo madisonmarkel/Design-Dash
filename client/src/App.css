@@ -50,6 +50,10 @@ code {
 }
 
   /* PIXABAY SEARCH RESULTS */
+  .all_pixabay_results {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
   .pixabay_results {
     margin: .5em;
   }

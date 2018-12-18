@@ -56,7 +56,7 @@ class PixabaySearch extends Component {
                     onClick={this.handleClick}>
                       Search
                   </button>
-                <div>
+                <div className="all_pixabay_results">
                     {pictures.map(picture => (
                         <img src={picture.previewURL} alt={picture.tags} id={picture.id} key={picture.id} className="pixabay_results"/>
                         
