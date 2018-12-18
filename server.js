@@ -7,6 +7,8 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+require('dotenv').config();
+
 //=================================================================================================================
 
 app.get('/pixabay', (req, response) => {

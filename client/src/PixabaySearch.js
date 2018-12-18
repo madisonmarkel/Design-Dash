@@ -1,5 +1,11 @@
+//https://reactjs.org/docs/handling-events.html
+//https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
+//https://stackoverflow.com/questions/43756852/call-external-api-on-button-click-and-then-render-a-child-component-with-the-api
+// https://reactjs.org/docs/faq-ajax.html
+
 import React, {Component} from "react";
 //import callAPI from "./PixabayAPI";
+
 
 class PixabaySearch extends Component {
     constructor() {

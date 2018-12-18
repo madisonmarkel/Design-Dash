@@ -32,3 +32,8 @@
   margin:0 auto;
   padding:1em;
 }
+
+  /* PIXABAY SEARCH RESULTS */
+  .pixabay_results {
+    margin: .5em;
+  }
