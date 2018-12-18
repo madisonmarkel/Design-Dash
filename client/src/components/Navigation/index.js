@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navigation = props => (
     <div className="navigation">
-        <h2 className="navigation_h2" onClick={() => props.handleClick(props.id)}>Your Brands</h2>
-        <h2 className="navigation_h2" onClick={() => props.handleClick(props.id)}>Search for Photos</h2>
-        <h2 className="navigation_h2" onClick={() => props.handleClick(props.id)}>Search for Colors</h2>
+        <h2 className="navigation_h2"><Link to="/brands">Your Brands</Link></h2>
+        <h2 className="navigation_h2"><Link to="/pixabay">Search for Photos</Link></h2>
+        <h2 className="navigation_h2"><Link to="/colors">Search for Colors</Link></h2>
     </div>
 );
+//onClick={() => props.handleClick(props.id)}
 
 export default Navigation;
