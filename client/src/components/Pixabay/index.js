@@ -5,6 +5,8 @@
 
 import React, {Component} from "react";
 //import callAPI from "./PixabayAPI";
+//import REACT_APP_PIXABAY_API_KEY from "../../env"
+//const REACT_APP_PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
 
 
 class PixabaySearch extends Component {
@@ -20,27 +22,17 @@ class PixabaySearch extends Component {
       }
       callAPI = () =>
             //NEED TO HIDE API KEYS
-        //fetch(`https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${PixabaySearch.value}&image_type=photo`)
+        //fetch(`https://pixabay.com/api/?key=${REACT_APP_PIXABAY_API_KEY}&q=${PixabaySearch.value}&image_type=photo`)
         
         fetch(`https://pixabay.com/api/?key=10973637-11d4c82c5cd38dd84074bb946&q=yellow+flowers&image_type=photo`)
             .then(response => response.json()) 
             .then(data => {
+                //console.log(REACT_APP_PIXABAY_API_KEY);
                 console.log(data.hits);
                 this.setState( {
                     pictures:data.hits
                 });
         })
-
-        // makeRequest = (pictures) => {
-        //     callAPI(pictures)
-        //         .then(function(data) {
-        //             this.setState(function (){
-        //                 return{
-        //                     pictures:data
-        //                 }
-        //             })
-        //         }.bind(this));
-        // }
 
       handleClick = () => {
         console.log('this is:', this);
@@ -66,12 +58,9 @@ class PixabaySearch extends Component {
                   </button>
                 <div>
                     {pictures.map(picture => (
-                        <img src={picture.previewURL} alt={picture.tags} id={picture.id} class="pixabay_results"/>
+                        <img src={picture.previewURL} alt={picture.tags} id={picture.id} key={picture.id} className="pixabay_results"/>
                         
                     ))}
-                    {/* {pictures.map(picture => (
-                        <img src={picture.hits.previewURL} alt="searchimages"/>
-                    ))} */}
                 </div>
             </div>
         )

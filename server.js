@@ -3,40 +3,59 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = process.env.PORT || 5000;
+const mongoose = require("mongoose");
+const routes = require("./routes");
+const PORT = process.env.PORT || 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-require('dotenv').config();
-
 //=================================================================================================================
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Add routes, both API and view
+app.use(routes);
 
-app.get('/pixabay', (req, response) => {
-  //res.send({ express: 'Hello From Express' });
-  $( "#pixabay_submit" ).click(function() {
-    event.preventDefault();
-    var userInput = $("#pixabay_user_input").val().trim();
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/designdash");
 
-    var queryURL = 'https://pixabay.com/api/?key="' + process.env.PIXABAY_API_KEY + "&q=" + userInput + '"&image_type=photo"';
-    $.ajax({
-        method: "GET",
-        url: queryURL,
-        data: {
-
-        }
-    }).then(function(response) {
-        console.log(response);
-        var results = response.data;
-
-        for (var i=0; i < results.length; i++) {
-        }
-    });
-  });
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-app.get('/api/pixabay', (req, res) => {
+
+// app.get('/pixabay', (req, response) => {
+//   //res.send({ express: 'Hello From Express' });
+//   $( "#pixabay_submit" ).click(function() {
+//     event.preventDefault();
+//     var userInput = $("#pixabay_user_input").val().trim();
+
+//     var queryURL = 'https://pixabay.com/api/?key="' + process.env.PIXABAY_API_KEY + "&q=" + userInput + '"&image_type=photo"';
+//     $.ajax({
+//         method: "GET",
+//         url: queryURL,
+//         data: {
+
+//         }
+//     }).then(function(response) {
+//         console.log(response);
+//         var results = response.data;
+
+//         for (var i=0; i < results.length; i++) {
+//         }
+//     });
+//   });
+// });
+
+// app.get('/', (req, res) => {
+//   res.send(process.env.REACT_APP_PIXABAY_API_KEY);
+// })
+
+// app.get('/api/pixabay', (req, res) => {
     
-})
+// })
 // //COLORMIND.IO: http://colormind.io/api-access/
 // var url = "http://colormind.io/api/";
 // var data = {
@@ -55,14 +74,14 @@ app.get('/api/pixabay', (req, res) => {
 //   }
 // }
 
-http.open("POST", url, true);
-http.send(JSON.stringify(data));
+// http.open("POST", url, true);
+// http.send(JSON.stringify(data));
 
-app.post('/brand', (req, res) => {
-  console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
-});
+// app.post('/brand', (req, res) => {
+//   console.log(req.body);
+//   res.send(
+//     `I received your POST request. This is what you sent me: ${req.body.post}`,
+//   );
+// });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// app.listen(port, () => console.log(`Listening on port ${port}`));
