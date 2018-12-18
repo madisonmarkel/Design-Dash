@@ -1,10 +1,5 @@
-//https://reactjs.org/docs/handling-events.html
-//https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
-
 import React, {Component} from "react";
-// import "./Status.css";
-
-// STATEFUL 
+//import callAPI from "./PixabayAPI";
 
 class PixabaySearch extends Component {
     constructor() {
@@ -17,39 +12,45 @@ class PixabaySearch extends Component {
         // This binding is necessary to make `this` work in the callback
         this.handleClick = this.handleClick.bind(this);
       }
-  
-    handleClick() {
-        fetch('https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=yellow+flowers&image_type=photo')
-        .then(results => {
-            return results.json();
-        }).then(data => {
-            let pictures = data.results.map((pic) => {
-                return (
-                    <div key={pic.results}>
-                        <img src={pic.picture.medium} />
-                    </div>
-                )
-            })
-            //set the new state to the data that we’ve pulled
-            this.setState({pictures: pictures});
-            console.log("state", this.state.pictures);
+      callAPI = () =>
+            //NEED TO HIDE API KEYS
+        //fetch(`https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${PixabaySearch.value}&image_type=photo`)
+        
+        fetch(`https://pixabay.com/api/?key=10973637-11d4c82c5cd38dd84074bb946&q=yellow+flowers&image_type=photo`)
+            .then(response => response.json()) 
+            .then(data => {
+                console.log(data.hits);
+                this.setState( {
+                    pictures:data.hits
+                });
         })
+
+        // makeRequest = (pictures) => {
+        //     callAPI(pictures)
+        //         .then(function(data) {
+        //             this.setState(function (){
+        //                 return{
+        //                     pictures:data
+        //                 }
+        //             })
+        //         }.bind(this));
+        // }
+
+      handleClick = () => {
+        console.log('this is:', this);
+        this.callAPI();
       }
 
-    render() {
+      render() {
+        const { pictures } = this.state;
         return(
-        //   <li 
-        //     id={`${this.state.message}`}
-        //   >
-        //     {this.renderMessage()}
-        //   </li> 
-        <div className="pixabay">
+            <div className="pixabay">
                 <h2>Search for Images</h2>
                   <input
                     id="pixabay_user_input"
                     type="text"
                     value={this.state.post}
-                    onChange={e => this.setState({ post: e.target.value })}
+                    // onChange={e => this.setState({ post: e.target.value })}
                   />
                   <button 
                     type="submit" 
@@ -57,10 +58,18 @@ class PixabaySearch extends Component {
                     onClick={this.handleClick}>
                       Search
                   </button>
-                  <p>{this.state.responseToPost}</p>
-        </div> 
-        );
-    }
+                <div>
+                    {pictures.map(picture => (
+                        <img src={picture.previewURL} alt={picture.tags} id={picture.id} class="pixabay_results"/>
+                        
+                    ))}
+                    {/* {pictures.map(picture => (
+                        <img src={picture.hits.previewURL} alt="searchimages"/>
+                    ))} */}
+                </div>
+            </div>
+        )
+      }
 }
 
 export default PixabaySearch;
