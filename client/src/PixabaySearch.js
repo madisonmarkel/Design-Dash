@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import callAPI from "./PixabayAPI";
+//import callAPI from "./PixabayAPI";
 
 class PixabaySearch extends Component {
     constructor() {
@@ -12,23 +12,37 @@ class PixabaySearch extends Component {
         // This binding is necessary to make `this` work in the callback
         this.handleClick = this.handleClick.bind(this);
       }
-        makeRequest = (pictures) => {
-            callAPI(pictures)
-                .then(function(res) {
-                    this.setState(function (){
-                        return{
-                            pictures:res
-                        }
-                    })
-                }.bind(this));
-        }
+      callAPI = () =>
+            //NEED TO HIDE API KEYS
+        //fetch(`https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${PixabaySearch.value}&image_type=photo`)
+        
+        fetch(`https://pixabay.com/api/?key=10973637-11d4c82c5cd38dd84074bb946&q=yellow+flowers&image_type=photo`)
+            .then(response => response.json()) 
+            .then(data => {
+                console.log(data.hits);
+                this.setState( {
+                    pictures:data.hits
+                });
+        })
+
+        // makeRequest = (pictures) => {
+        //     callAPI(pictures)
+        //         .then(function(data) {
+        //             this.setState(function (){
+        //                 return{
+        //                     pictures:data
+        //                 }
+        //             })
+        //         }.bind(this));
+        // }
 
       handleClick = () => {
         console.log('this is:', this);
-        this.makeRequest();
+        this.callAPI();
       }
 
       render() {
+        const { pictures } = this.state;
         return(
             <div className="pixabay">
                 <h2>Search for Images</h2>
@@ -44,6 +58,15 @@ class PixabaySearch extends Component {
                     onClick={this.handleClick}>
                       Search
                   </button>
+                <div>
+                    {pictures.map(picture => (
+                        <img src={picture.previewURL} alt={picture.tags} id={picture.id} class="pixabay_results"/>
+                        
+                    ))}
+                    {/* {pictures.map(picture => (
+                        <img src={picture.hits.previewURL} alt="searchimages"/>
+                    ))} */}
+                </div>
             </div>
         )
       }

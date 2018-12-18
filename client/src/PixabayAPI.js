@@ -1,4 +1,5 @@
 // TRY AXIOS CALL FOR API
+//https://css-tricks.com/using-fetch/
 
 //import React from "react";
 import PIXABAY_API_KEY from "./env"
@@ -14,12 +15,16 @@ export const callAPI = () =>
   //fetch(`https://pixabay.com/api/?key=${PIXABAY_API_KEY}&q=${PixabaySearch.value}&image_type=photo`)
   
   fetch(`https://pixabay.com/api/?key=10973637-11d4c82c5cd38dd84074bb946&q=yellow+flowers&image_type=photo`)
-    .then(
-        res => res.json()
-    .then(data => data.results)
-    .then(console.log("PIXABAYAPI.JS CONSOLE"))
-    .then(console.log(res))
-    )
+    .then(response => response.json()) 
+    .then(data => {
+        console.log(data);
+    })
+  // .then(
+    //     res => res.json()
+    //.then(data => data.results)
+    // .then(console.log("PIXABAYAPI.JS CONSOLE"))
+    // .then(console.log(res))
+    
 
 // export const search = query =>
 //   fetch(`${PixabayAPI}search/photos?query=${query}&client_id=${process.env.PIXABAY_API_KEY}`)
