@@ -13,9 +13,9 @@ console.log(process.env.REACT_APP_PIXABAY_API_KEY)
 class Brands extends Component {
   state = {
     brands: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    name: "",
+    industry: "",
+    slogan: ""
   };
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class Brands extends Component {
   loadBrands = () => {
     API.getBrands()
       .then(res =>
-        this.setState({ brands: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ brands: res.data, name: "", industry: "", slogan: "" })
       )
       .catch(err => console.log(err));
   };
@@ -45,45 +45,16 @@ class Brands extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (this.state.name && this.state.industry) {
       API.saveBrand({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        name: this.state.name,
+        industry: this.state.industry,
+        slogan: this.state.slogan
       })
         .then(res => this.loadbrands())
         .catch(err => console.log(err));
     }
   };
-  // state = {
-  //   response: '',
-  //   post: '',
-  //   responseToPost: '',
-  // };
-  // componentDidMount() {
-  //   this.callApi()
-  //     .then(res => this.setState({ response: res.express }))
-  //     .catch(err => console.log(err));
-  // }
-  // callApi = async () => {
-  //   const response = await fetch('/api/hello');
-  //   const body = await response.json();
-  //   if (response.status !== 200) throw Error(body.message);
-  //   return body;
-  // };
-  
-  // handleSubmit = async e => {
-  //   e.preventDefault();
-  //   const response = await fetch('/api/pixabay', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ post: this.state.post }),
-  //   });
-  //   const body = await response.text();
-  //   this.setState({ responseToPost: body });
-  // };
 
   render() {
     return (
@@ -101,7 +72,7 @@ class Brands extends Component {
                   <ListItem key={brand._id}>
                     <Link to={"/brands/" + brand._id}>
                       <strong>
-                        {brand.title} by {brand.author}
+                        {brand.name} by {brand.industry}
                       </strong>
                     </Link>
                   </ListItem>

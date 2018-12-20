@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 //import './App.css';
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-//import PixabaySearch from "../components/Pixabay";
+import ColorSearch from "../components/ColorSearch";
 
 //const PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
 
 console.log(process.env.REACT_APP_PIXABAY_API_KEY)
 
-class App extends Component {
+class ColorPage extends Component {
   state = {
     response: '',
     post: '',
@@ -20,7 +20,7 @@ class App extends Component {
   //     .catch(err => console.log(err));
   // }
   // callApi = async () => {
-  //   const response = await fetch('/api/hello');
+  //   const response = await fetch('/api/brand');
   //   const body = await response.json();
   //   if (response.status !== 200) throw Error(body.message);
   //   return body;
@@ -47,10 +47,14 @@ class App extends Component {
         </header>
         <div className="main_app">
             <Navigation/>
-        </div>
+
+            <div className="searches">
+              <ColorSearch/>
+            </div>
+          </div>
       </div>
     );
   }
 }
 
-export default App;
+export default ColorPage;

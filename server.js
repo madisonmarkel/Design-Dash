@@ -6,6 +6,8 @@ const app = express();
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
+
+// MIDDLEWARE
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -18,7 +20,10 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/designdash");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/designdash", function(err) {
+  if (err) throw err;
+  console.log("connected to db");
+});
 
 // Start the API server
 app.listen(PORT, function() {
