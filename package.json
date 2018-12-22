@@ -1,6 +1,7 @@
 {
   "name": "example-create-react-app-express",
   "version": "1.0.0",
+  "proxy": "http://localhost:3001/",
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
