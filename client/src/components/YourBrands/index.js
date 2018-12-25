@@ -40,4 +40,4 @@ export function ListItem({ children }) {
 //     </div>
 // );
 
-// export default YourBrands;
+export default YourBrands;

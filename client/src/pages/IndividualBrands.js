@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
+import Navigation from "../components/Navigation";
+import Header from "../components/Header";
+import '../App.css';
 
 class IndividualBrands extends Component {
   state = {
@@ -16,7 +19,15 @@ class IndividualBrands extends Component {
 
   render() {
     return (
-        <div>
+      <div className="App">
+        <header className="App-header">
+          <Header/>
+        </header>
+        <div className="main_app">
+            <Navigation/>
+        </div>
+
+        <div className="IndividualBrands">
               <h1>
                 {this.state.brand.name}
               </h1>
@@ -29,8 +40,9 @@ class IndividualBrands extends Component {
               <h2>
                 Date Created: {this.state.brand.date}
               </h2>
-            <Link to="/">← Home</Link>
+            <Link to="/brands">← Your Brands</Link>
         </div>
+    </div>
     );
   }
 }

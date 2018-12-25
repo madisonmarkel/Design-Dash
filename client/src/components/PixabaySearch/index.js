@@ -1,3 +1,5 @@
+// =================================== PIXABAY SEARCH ===================================================
+
 //https://reactjs.org/docs/handling-events.html
 //https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
 //https://stackoverflow.com/questions/43756852/call-external-api-on-button-click-and-then-render-a-child-component-with-the-api
@@ -22,7 +24,7 @@ class PixabaySearch extends Component {
     //     //this.handleClick = this.handleClick.bind(this);
     //   }
         state = {
-            brands: [],
+            pictures: [],
             pixabaySearch: ""
         };
         handleInputChange = event => {
@@ -33,7 +35,6 @@ class PixabaySearch extends Component {
             [name]: value
           });
         };
-      
         handleFormSubmit = event => {
           // When the form is submitted, prevent its default behavior, get recipes update the recipes state
           event.preventDefault();
@@ -79,9 +80,9 @@ class PixabaySearch extends Component {
                     onClick={this.handleFormSubmit}>
                       Search
                   </button>
-                  
+
                 <div className="all_pixabay_results">
-                    {this.state.brands.map(picture => (
+                    {this.state.pictures.map(picture => (
                         <img src={picture.previewURL} alt={picture.tags} id={picture.id} key={picture.id} className="pixabay_results"/>
                         
                     ))}

@@ -23,13 +23,14 @@ router.get("/", (req, res) => {
         .then(data => {
         //.then(data => res.json(data));
             //console.log(REACT_APP_PIXABAY_API_KEY);
-            console.log(data.hits);
-            //res.send(data)
+            console.log("DATA . HITS !!!!!!!!!:" + data.hits);
+            console.log("DATA!!!!!!:" + data);
+            res.send(data)
             //on client side, then do this.setState in client
-            this.setState( {
-                pictures:data.hits
-            });
-  });
+//             this.setState( {
+//                 pictures:data.hits
+//             });
+   });
 });
   
   module.exports = router;
