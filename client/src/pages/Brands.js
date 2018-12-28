@@ -72,7 +72,7 @@ class Brands extends Component {
                   <ListItem key={brand._id}>
                     <Link to={"/brands/" + brand._id}>
                       <strong>
-                        {brand.name} by {brand.industry}
+                        {brand.name}
                       </strong>
                     </Link>
                   </ListItem>

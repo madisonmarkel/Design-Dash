@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
@@ -16,6 +17,14 @@ class IndividualBrands extends Component {
       .then(res => this.setState({ brand: res.data }))
       .catch(err => console.log(err));
   }
+
+  // Deletes a book from the database with a given id, then reloads books from the db
+  deleteBrand = id => {
+    console.log(id)
+    API.deleteBrand(id)
+      .then(res => this.loadBrandPage(), this.props.history.push('/brands'))
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
@@ -40,6 +49,9 @@ class IndividualBrands extends Component {
               <h2>
                 Date Created: {this.state.brand.date}
               </h2>
+              <button className="btn" onClick={() => this.updateBrand(this.state.brand._id)}>Update</button>
+              <button className="deleteButton" onClick={() => this.deleteBrand(this.state.brand._id)}>Delete</button>
+              <br/>
             <Link to="/brands">← Your Brands</Link>
         </div>
     </div>

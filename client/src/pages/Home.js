@@ -96,56 +96,69 @@ class App extends Component {
         </header>
         <div className="main_app">
             <Navigation/>
+        <div className="home">
+          <h2>Welcome to Design Dash!</h2>
+            <p>Here you can save multiple company's branding information. Ranging from colors, logos, slogan, and industry, Design Dash is the easiest way to manage and share information with your team.</p>
+            <p>Design Dash also allows you to create a brand image. Search for photos, colors, and inspiration to guide your brand identity. </p>
+            <p>Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.</p>
+            <h2>Add a Brand</h2>
+            <form>
+                <Input
+                  value={this.state.name}
+                  onChange={this.handleInputChange}
+                  name="name"
+                  placeholder="name (required)"
+                />
+                <Input
+                  value={this.state.industry}
+                  onChange={this.handleInputChange}
+                  name="industry"
+                  placeholder="Industry (required)"
+                />
+                <TextArea
+                  value={this.state.slogan}
+                  onChange={this.handleInputChange}
+                  name="slogan"
+                  placeholder="Slogan (Optional)"
+                />
+                <TextArea
+                  value={this.state.logo}
+                  onChange={this.handleInputChange}
+                  name="logo"
+                  placeholder="Logo Image Link (Optional)"
+                />
+                <TextArea
+                  value={this.state.colors}
+                  onChange={this.handleInputChange}
+                  name="colors"
+                  placeholder="Brand Color Code (Optional)"
+                />
+                <TextArea
+                  value={this.state.images}
+                  onChange={this.handleInputChange}
+                  name="images"
+                  placeholder="Additional Image Links (Optional)"
+                />
+                <FormBtn
+                  disabled={!(this.state.name && this.state.industry)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit New Brand
+                </FormBtn>
+              </form>
+              <YourBrands>
+                  {this.state.brands.map(brand => (
+                    <ListItem key={brand._id}>
+                      <Link to={"/brands/" + brand._id}>
+                        <strong>
+                          {brand.name}
+                        </strong>
+                      </Link>
+                    </ListItem>
+                  ))}
+                </YourBrands>
+          </div>
         </div>
-
-        <h2>Welcome to Design Dash!</h2>
-        <p>
-          Here you can save multiple company's branding information. Ranging from colors, logos, slogan, and industry, Design Dash is the easiest way to manage and share information with your team.
-        </p>
-        <p>
-          Design Dash also allows you to create a brand image. Search for photos, colors, and inspiration to guide your brand identity. 
-        </p>
-        <p>
-          Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.
-        </p>
-          <h2>Add a Brand</h2>
-          <form>
-              <Input
-                value={this.state.name}
-                onChange={this.handleInputChange}
-                name="name"
-                placeholder="name (required)"
-              />
-              <Input
-                value={this.state.industry}
-                onChange={this.handleInputChange}
-                name="industry"
-                placeholder="Industry (required)"
-              />
-              <TextArea
-                value={this.state.slogan}
-                onChange={this.handleInputChange}
-                name="slogan"
-                placeholder="Slogan (Optional)"
-              />
-              <FormBtn
-                disabled={!(this.state.name && this.state.industry)}
-                onClick={this.handleFormSubmit}
-              >
-                Submit New Brand
-              </FormBtn>
-            </form>
-            <YourBrands>
-                {this.state.brands.map(brand => (
-                  <ListItem key={brand._id}>
-                    <Link to={"/brands/" + brand._id}>
-                      <strong>
-                        {brand.name} by {brand.industry}
-                      </strong>
-                    </Link>
-                  </ListItem>
-                ))}
-              </YourBrands>
       </div>
     );
   }

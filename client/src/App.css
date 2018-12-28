@@ -13,41 +13,54 @@ code {
     monospace;
 }
 
+.btn {
+  padding:.2em 1em;
+  margin-bottom:1em;
+  margin-right:1em;
+  font-size:1em;
+  border-radius: .2em;
+}
+
 /* HEADER */
-.App-header {
-  background-color: #2e3648;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  min-height: 50%;
-  padding-bottom: 9px;
-}
-.App-header h1 {
-  float:right;
-  padding:0 1em;
-}
+  .App-header {
+    background-color: #2e3648;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    min-height: 50%;
+    padding-bottom: 9px;
+  }
+  .App-header h1 {
+    float:right;
+    padding:0 1em;
+  }
 /* MAIN APP CONTAINER */
-.main_app {
-  max-width: 100%;
-  margin:0 auto;
-}
+  .main_app {
+    max-width: 100%;
+    margin:0 auto;
+  }
+
+/* HOME */
+  .home {
+    padding:1em 1em 0;
+  }
 
 /* NAVIGATION */
 .navigation {
   background:#eee;
   float:left;
   padding: 1em;
-  height: 100%;
   margin-right: 3em;
+  height:100vh;
 }
 
 /* MAIN MAIN */
-.searches {
-  margin:0 auto;
-  padding:1em;
-}
+  .searches {
+    margin:0 auto;
+    padding:1em;
+  }
 
   /* PIXABAY SEARCH RESULTS */
   .all_pixabay_results {
@@ -59,3 +72,12 @@ code {
   }
 
 /* INDIVIDUAL BRANDS  */
+  .deleteButton {
+    background:#d80a0a;
+    color:#fff;
+    padding:.2em 1em;
+    margin-bottom:1em;
+    margin-right:1em;
+    font-size:1em;
+    border-radius: .2em;
+  }

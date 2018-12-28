@@ -77,7 +77,7 @@ class PixabaySearch extends Component {
                         name="pixabaySearch"
                         value={this.state.pixabaySearch}
                         onChange={this.handleInputChange}
-                        placeholder="Search For a Recipe"
+                        className="pixabaySearch"
                       />
                       <Button
                         onClick={this.handleFormSubmit}
