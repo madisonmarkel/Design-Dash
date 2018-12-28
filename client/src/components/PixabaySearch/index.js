@@ -42,7 +42,10 @@ class PixabaySearch extends Component {
           // When the form is submitted, prevent its default behavior, get recipes update the recipes state
           event.preventDefault();
           API.getPixabayImages(this.state.pixabaySearch)
-            .then(res => this.setState({ pictures: res.data }))
+            .then(res => {
+              console.log(res); 
+              this.setState({ pictures: res.data.hits })
+            })
             .catch(err => console.log(err));
         };
 
