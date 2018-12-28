@@ -7,6 +7,9 @@
 
 import React, {Component} from "react";
 import API from "../../utils/API";
+import Input from "../Input";
+import Button from "../Button"
+
 //import callAPI from "./PixabayAPI";
 //import REACT_APP_PIXABAY_API_KEY from "../../env"
 //const REACT_APP_PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
@@ -39,7 +42,7 @@ class PixabaySearch extends Component {
           // When the form is submitted, prevent its default behavior, get recipes update the recipes state
           event.preventDefault();
           API.getPixabayImages(this.state.pixabaySearch)
-            .then(res => this.setState({ brands: res.data }))
+            .then(res => this.setState({ pictures: res.data }))
             .catch(err => console.log(err));
         };
 
@@ -67,7 +70,20 @@ class PixabaySearch extends Component {
         return(
             <div className="pixabay">
                 <h2>Search for Images</h2>
-                  <input
+                <Input
+                        name="pixabaySearch"
+                        value={this.state.pixabaySearch}
+                        onChange={this.handleInputChange}
+                        placeholder="Search For a Recipe"
+                      />
+                      <Button
+                        onClick={this.handleFormSubmit}
+                        type="success"
+                        className="input-lg"
+                      >
+                        Search
+                      </Button>
+                  {/* <input
                     id="pixabay_user_input"
                     type="text"
                     value={this.state.pixabaySearch}
@@ -79,11 +95,16 @@ class PixabaySearch extends Component {
                     id="pixabay_submit"
                     onClick={this.handleFormSubmit}>
                       Search
-                  </button>
+                  </button> */}
 
                 <div className="all_pixabay_results">
                     {this.state.pictures.map(picture => (
-                        <img src={picture.previewURL} alt={picture.tags} id={picture.id} key={picture.id} className="pixabay_results"/>
+                        <img 
+                        src={picture.previewURL} 
+                        alt={picture.tags} 
+                        id={picture.id} 
+                        key={picture.id} 
+                        className="pixabay_results"/>
                         
                     ))}
                 </div>

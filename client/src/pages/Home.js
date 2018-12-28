@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 //import './App.css';
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-import YourBrands from "../components/YourBrands"
+import API from "../utils/API";
+//import YourBrands from "../components/YourBrands"
+import { Input, TextArea, FormBtn } from "../components/Form";
+import { YourBrands, ListItem } from "../components/YourBrands";
+import { Link } from "react-router-dom";
 //import PixabaySearch from "../components/Pixabay";
 
 //const PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
@@ -11,10 +15,54 @@ console.log(process.env.REACT_APP_PIXABAY_API_KEY)
 
 class App extends Component {
   state = {
-    response: '',
-    post: '',
-    responseToPost: '',
+    brands: [],
+    name: "",
+    industry: "",
+    slogan: ""
   };
+
+  componentDidMount() {
+    this.loadBrands();
+  }
+
+  loadBrands = () => {
+    API.getBrands()
+      .then(res =>
+        this.setState({ brands: res.data, name: "", industry: "", slogan: "" })
+      )
+      .catch(err => console.log(err));
+  };
+
+  deleteBrand = id => {
+    API.deleteBrand(id)
+      .then(res => this.loadBrands())
+      .catch(err => console.log(err));
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.name && this.state.industry) {
+      API.saveBrand({
+        name: this.state.name,
+        industry: this.state.industry,
+        slogan: this.state.slogan
+      })
+        .then(res => this.loadBrands())
+        .catch(err => console.log(err));
+    }
+  };
+  // state = {
+  //   response: '',
+  //   post: '',
+  //   responseToPost: '',
+  // };
   // componentDidMount() {
   //   this.callApi()
   //     .then(res => this.setState({ response: res.express }))
@@ -60,6 +108,44 @@ class App extends Component {
         <p>
           Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.
         </p>
+          <h2>Add a Brand</h2>
+          <form>
+              <Input
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="name (required)"
+              />
+              <Input
+                value={this.state.industry}
+                onChange={this.handleInputChange}
+                name="industry"
+                placeholder="Industry (required)"
+              />
+              <TextArea
+                value={this.state.slogan}
+                onChange={this.handleInputChange}
+                name="slogan"
+                placeholder="Slogan (Optional)"
+              />
+              <FormBtn
+                disabled={!(this.state.name && this.state.industry)}
+                onClick={this.handleFormSubmit}
+              >
+                Submit New Brand
+              </FormBtn>
+            </form>
+            <YourBrands>
+                {this.state.brands.map(brand => (
+                  <ListItem key={brand._id}>
+                    <Link to={"/brands/" + brand._id}>
+                      <strong>
+                        {brand.name} by {brand.industry}
+                      </strong>
+                    </Link>
+                  </ListItem>
+                ))}
+              </YourBrands>
       </div>
     );
   }
