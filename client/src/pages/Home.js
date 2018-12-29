@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 //import './App.css';
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-import AddForm from "../components/AddForm";
 import API from "../utils/API";
 //import YourBrands from "../components/YourBrands"
 import { Input, TextArea, FormBtn } from "../components/Form";
@@ -111,8 +110,7 @@ class App extends Component {
             <p>Design Dash also allows you to create a brand image. Search for photos, colors, and inspiration to guide your brand identity. </p>
             <p>Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.</p>
             <h2>Add a Brand</h2>
-            <AddForm/>
-            {/* <form>
+            <form>
                 <Input
                   value={this.state.name}
                   onChange={this.handleInputChange}
@@ -161,7 +159,7 @@ class App extends Component {
                 >
                   Submit New Brand
                 </FormBtn>
-              </form> */}
+              </form>
               <br/><hr/><br/>
               <YourBrands>
                   {this.state.brands.map(brand => (
