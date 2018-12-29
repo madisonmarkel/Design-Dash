@@ -1,3 +1,4 @@
 module.exports = {
-    Brand: require("./brand")
+    Brand: require("./brand"),
+    User: require("./user")
   };

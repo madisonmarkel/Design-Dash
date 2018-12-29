@@ -17,6 +17,11 @@ code {
     monospace;
 }
 
+.col_half {
+  width:50%;
+  float:left;
+}
+
 .btn {
   padding:.2em 1em;
   margin: 1em 1em 1em 0;
@@ -24,16 +29,67 @@ code {
   border-radius: .2em;
   background: #f17058;
   color:#fff;
+  box-shadow: 1px 1px 4px #2e3648;
+  border: none;
 }
 /* LOGIN SIGNUP */
+  .login_links{
+    float:right;
+    padding:1em 2em;
+  }
+  .login_links a {
+    color:#fff;
+    margin-right:1em;
+    font-size:1.3em;
+  }
   .info{
     margin: auto;
     width: 50%;
-    padding: .3em;
+    padding: 2em .3em;
+    color: #fff;
   }
   .btn a {
     color:#fff;
     text-decoration: none;
+  }
+  
+  .color-change-5x {
+    -webkit-animation: color-change-5x 15s linear infinite alternate both;
+            animation: color-change-5x 15s linear infinite alternate both;
+  }
+  @-webkit-keyframes color-change-5x {
+    0% {
+      background:#dfd1d1;
+    }
+    25% {
+      background: #c7baba;
+    }
+    50% {
+      background: #b4afaf;
+    }
+    75% {
+      background: #c7c1c1;
+    }
+    100% {
+      background: #b3b2b2;
+    }
+  }
+  @keyframes color-change-5x {
+    0% {
+      background: #dfd1d1;
+    }
+    25% {
+      background: #c7baba;
+    }
+    50% {
+      background: #b4afaf;
+    }
+    75% {
+      background: #c7c1c1;
+    }
+    100% {
+      background: #b3b2b2;
+    }
   }
 
 /* HEADER */
@@ -62,7 +118,7 @@ code {
     padding:1em 1em 0;
   }
   Input {
-    width: 30em;
+    width: 20em;
     font-size: .9em;
     height: 2.5em;
     background: white;
@@ -90,6 +146,36 @@ code {
   margin-right: 3em;
   height:175vh;
 }
+.tracking-in-expand {
+	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
 
 /* MAIN MAIN */
   .searches {
@@ -115,7 +201,9 @@ code {
     margin-right:1em;
     font-size:1em;
     border-radius: .2em;
+    box-shadow: 1px 1px 4px #2e3648;
+    border: none;
   }
-  .brandImages {
-    max-width: 250px;
+  .brand_images {
+    max-height: 250px;
   }
