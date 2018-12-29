@@ -112,13 +112,13 @@ class App extends Component {
             <p>To get </p>
             <h2>Add a Brand</h2>
             <form>
-                <Input
+                <TextArea
                   value={this.state.name}
                   onChange={this.handleInputChange}
                   name="name"
                   placeholder="Company Name (Required)"
                 />
-                <Input
+                <TextArea
                   value={this.state.industry}
                   onChange={this.handleInputChange}
                   name="industry"
