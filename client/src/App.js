@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import IndividualBrands from "./pages/IndividualBrands";
 import PixabayPage from "./pages/Pixabay";
 import ColorPage from "./pages/Color";
+import Login from "./pages/Login";
 import "./App.css";
 
 // import Header from "./components/Header/Header";
@@ -15,7 +16,8 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/brands" component={Brands} />
           <Route exact path="/brands/:id" component={IndividualBrands} />
           <Route exact path="/photo-search" component={PixabayPage} />

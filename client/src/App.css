@@ -25,6 +25,16 @@ code {
   background: #f17058;
   color:#fff;
 }
+/* LOGIN SIGNUP */
+  .info{
+    margin: auto;
+    width: 50%;
+    padding: .3em;
+  }
+  .btn a {
+    color:#fff;
+    text-decoration: none;
+  }
 
 /* HEADER */
   .App-header {
