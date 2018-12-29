@@ -26,18 +26,5 @@ router.get("/", (req, res) => {
         console.log(data.hits);
         res.send(data);
     }).catch(err => (console.log(err)))
-
-//         .then(data => {
-//         //.then(data => res.json(data));
-//             //console.log(REACT_APP_PIXABAY_API_KEY);
-//             console.log("DATA . HITS !!!!!!!!!:" + data.hits);
-//             console.log("DATA!!!!!!:" + data);
-//             res.send(data)
-//             //on client side, then do this.setState in client
-// //             this.setState( {
-// //                 pictures:data.hits
-// //             });
-//         .catch(err => res.status(422).json(err));
    });
-//});
   module.exports = router;

@@ -52,6 +52,9 @@ code {
     color:#fff;
     text-decoration: none;
   }
+  .squiggle {
+    max-width: 35em;
+  }
   
   .color-change-5x {
     -webkit-animation: color-change-5x 15s linear infinite alternate both;

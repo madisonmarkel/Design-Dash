@@ -16,16 +16,6 @@ import Button from "../Button"
 
 
 class PixabaySearch extends Component {
-    // constructor() {
-    //     //super = pass any props from the parent to the child component.
-    //     super();
-    //     //When you set the initial state, you want to set it as empty, or blank.
-    //     this.state = {
-    //         pixabaySearch: [],
-    //     }
-    //     // This binding is necessary to make `this` work in the callback
-    //     //this.handleClick = this.handleClick.bind(this);
-    //   }
         state = {
             pictures: [],
             pixabaySearch: ""
@@ -49,25 +39,6 @@ class PixabaySearch extends Component {
             .catch(err => console.log(err));
         };
 
-    //   callAPI = () =>
-    //         //NEED TO HIDE API KEYS
-    //     //fetch(`https://pixabay.com/api/?key=${REACT_APP_PIXABAY_API_KEY}&q=${PixabaySearch.value}&image_type=photo`)
-        
-    //     fetch(`https://pixabay.com/api/?key=10973637-11d4c82c5cd38dd84074bb946&q=yellow+flowers&image_type=photo`)
-    //         .then(response => response.json()) 
-    //         .then(data => {
-    //             //console.log(REACT_APP_PIXABAY_API_KEY);
-    //             console.log(data.hits);
-    //             this.setState( {
-    //                 pictures:data.hits
-    //             });
-    //     })
-
-    //   handleClick = () => {
-    //     console.log('this is:', this);
-    //     this.callAPI();
-    //   }
-
       render() {
         //const { pixabaySearch } = this.state;
         return(
@@ -86,23 +57,10 @@ class PixabaySearch extends Component {
                       >
                         Search
                       </Button>
-                  {/* <input
-                    id="pixabay_user_input"
-                    type="text"
-                    value={this.state.pixabaySearch}
-                    onChange={this.handleInputChange}
-                    // onChange={e => this.setState({ post: e.target.value })}
-                  />
-                  <button 
-                    type="submit" 
-                    id="pixabay_submit"
-                    onClick={this.handleFormSubmit}>
-                      Search
-                  </button> */}
 
                 <div className="all_pixabay_results">
                     {this.state.pictures.map(picture => (
-                        <a href={picture.webformatURL} >
+                        <a href={picture.webformatURL} key={picture.id}>
                           <img 
                           src={picture.previewURL} 
                           alt={picture.tags} 

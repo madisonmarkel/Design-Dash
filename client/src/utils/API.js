@@ -20,5 +20,5 @@ export default {
   getPixabayImages: function(query) {
     console.log("SRC/UTILS/API GETPIXABAYIMAGES FUNCTION ROUTE");
     return axios.get("/api/pixabay", { params: { q: query } });
-  }
+  },
 };

@@ -68,6 +68,7 @@ export default withAuth(class Home extends Component {
             <p>Here you can save multiple company's branding information. Ranging from colors, logos, slogan, and industry, Design Dash is the easiest way to manage and share information with your team.</p>
             <p>Design Dash also allows you to create a brand image. Search for photos, colors, and inspiration to guide your brand identity. </p>
             <p>Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.</p>
+              <img className="squiggle" src="../squiggle.png" alt="Squiggle Line"/>
             <hr/>
             <div className="col_half">
                 <form>
