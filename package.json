@@ -1,18 +1,27 @@
 {
   "name": "example-create-react-app-express",
   "version": "1.0.0",
+  "proxy": "http://localhost:3001/",
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
+    "@okta/jwt-verifier": "0.0.14",
+    "@okta/okta-react": "^1.1.4",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "create-react-context": "^0.2.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "node-fetch": "^2.3.0"
+    "mongoose": "^5.4.0",
+    "node-fetch": "^2.3.0",
+    "react": "^15.3.1",
+    "react-router-dom": "^4.3.1",
+    "routes": "^2.1.0"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"
-  },
-  "proxy": "http://localhost:5000/"
+  }
 }

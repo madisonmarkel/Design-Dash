@@ -1,34 +1,212 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+hr {
+  margin-top:3em;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.col_half {
+  width:50%;
+  float:left;
+}
+
+.btn {
+  padding:.2em 1em;
+  margin: 1em 1em 1em 0;
+  font-size:1em;
+  border-radius: .2em;
+  background: #f17058;
+  color:#fff;
+  box-shadow: 1px 1px 4px #2e3648;
+  border: none;
+}
+/* LOGIN SIGNUP */
+  .login_links{
+    float:right;
+    padding:1em 2em;
+  }
+  .login_links a {
+    color:#fff;
+    margin-right:1em;
+    font-size:1.3em;
+  }
+  .info{
+    margin: auto;
+    width: 50%;
+    padding: 2em .3em;
+    color: #fff;
+  }
+  .btn a {
+    color:#fff;
+    text-decoration: none;
+  }
+  .squiggle {
+    max-width: 35em;
+  }
+  
+  .color-change-5x {
+    -webkit-animation: color-change-5x 15s linear infinite alternate both;
+            animation: color-change-5x 15s linear infinite alternate both;
+  }
+  @-webkit-keyframes color-change-5x {
+    0% {
+      background:#dfd1d1;
+    }
+    25% {
+      background: #c7baba;
+    }
+    50% {
+      background: #b4afaf;
+    }
+    75% {
+      background: #c7c1c1;
+    }
+    100% {
+      background: #b3b2b2;
+    }
+  }
+  @keyframes color-change-5x {
+    0% {
+      background: #dfd1d1;
+    }
+    25% {
+      background: #c7baba;
+    }
+    50% {
+      background: #b4afaf;
+    }
+    75% {
+      background: #c7c1c1;
+    }
+    100% {
+      background: #b3b2b2;
+    }
+  }
+
 /* HEADER */
-.App-header {
-  background-color: #2e3648;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  min-height: 50%;
-  padding-bottom: 9px;
-}
-.App-header h1 {
-  float:right;
-  padding:0 1em;
-}
+  .App-header {
+    background-color: #2e3648;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    min-height: 50%;
+    padding-bottom: 9px;
+  }
+  .App-header h1 {
+    float:right;
+    padding:0 1em;
+  }
 /* MAIN APP CONTAINER */
-.main_app {
-  max-width: 100%;
-  margin:0 auto;
-}
+  .main_app {
+    max-width: 100%;
+    margin:0 auto;
+  }
+
+/* HOME */
+  .home {
+    padding:1em 1em 0;
+  }
+  Input {
+    width: 20em;
+    font-size: .9em;
+    height: 2.5em;
+    background: white;
+    border: none;
+    margin-top: .5em;
+    border-radius: .2em;
+    box-shadow: 1px 1px 4px #2e3648;
+  }
+  TextArea {
+    width: 30em;
+    font-size: .9em;
+    height: 2.5em;
+    background: white;
+    border: none;
+    margin-top: .5em;
+    border-radius: .2em;
+    box-shadow: 1px 1px 4px #2e3648;
+  }
 
 /* NAVIGATION */
 .navigation {
   background:#eee;
   float:left;
   padding: 1em;
-  height: 100%;
+  margin-right: 3em;
+  height:175vh;
+}
+.tracking-in-expand {
+	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
+
+
 /* MAIN MAIN */
-.searches {
-  margin:0 auto;
-  padding:1em;
-}
+  .searches {
+    margin:0 auto;
+    padding:1em;
+  }
+
+  /* PIXABAY SEARCH RESULTS */
+  .all_pixabay_results {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+  .pixabay_results {
+    margin: .5em;
+  }
+
+/* INDIVIDUAL BRANDS  */
+  .deleteButton {
+    background:#d80a0a;
+    color:#fff;
+    padding:.2em 1em;
+    margin-bottom:1em;
+    margin-right:1em;
+    font-size:1em;
+    border-radius: .2em;
+    box-shadow: 1px 1px 4px #2e3648;
+    border: none;
+  }
+  .brand_images {
+    max-height: 250px;
+  }

@@ -1,56 +1,64 @@
-import React, { Component } from 'react';
-import './App.css';
-import Navigation from "./Navigation";
-import Header from "./Header";
-import PixabaySearch from "./PixabaySearch";
+//import React, { Component } from 'react';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Brands from "./pages/Brands";
+import Home from "./pages/Home";
+import IndividualBrands from "./pages/IndividualBrands";
+import PixabayPage from "./pages/Pixabay";
+import ColorPage from "./pages/Color";
+import Login from "./pages/Login";
+import "./App.css";
+import { Security, ImplicitCallback } from '@okta/okta-react';
 
-class App extends Component {
-  state = {
-    response: '',
-    post: '',
-    responseToPost: '',
-  };
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  };
-  
-  handleSubmit = async e => {
-    e.preventDefault();
-    const response = await fetch('/api/pixabay', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ post: this.state.post }),
-    });
-    const body = await response.text();
-    this.setState({ responseToPost: body });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <Header/>
-        </header>
-        <div className="main_app">
-            <Navigation/>
-
-            <div className="searches">
-              <PixabaySearch/>
-            </div>
-          </div>
-      </div>
-    );
-  }
+const config = {
+  issuer: 'https://dev-687371.oktapreview.com',
+  redirect_uri: window.location.origin + '/implicit/callback',
+  client_id: '0oainhuo94dnScBmE0h7'
 }
+
+// class App extends Component {
+//   render() {
+//     return (
+//       <Router>
+//         <Security issuer={config.issuer}
+//                   client_id={config.client_id}
+//                   redirect_uri={config.redirect_uri}
+//         >
+//           <Route path='/' exact={true} component={Home}/>
+//           <Route path='/implicit/callback' component={ImplicitCallback}/>
+//           <Route exact path="/" component={Login} />
+//           <Route exact path="/home" component={Home} />
+//           <Route exact path="/brands" component={Brands} />
+//           <Route exact path="/brands/:id" component={IndividualBrands} />
+//           <Route exact path="/photo-search" component={PixabayPage} />
+//           <Route exact path="/color-search" component={ColorPage} />
+//         </Security>
+//       </Router>
+//     );
+//   }
+// }
+
+ function App() {
+   return (
+     <Router>
+       <div>
+       <Security issuer={config.issuer}
+                  client_id={config.client_id}
+                  redirect_uri={config.redirect_uri}
+        >
+         <Switch>
+           <Route exact path="/" component={Login} />
+             <Route path='/implicit/callback' component={ImplicitCallback}/>
+           <Route exact path="/home" component={Home} />
+           <Route exact path="/brands" component={Brands} />
+           <Route exact path="/brands/:id" component={IndividualBrands} />
+           <Route exact path="/photo-search" component={PixabayPage} />
+           <Route exact path="/color-search" component={ColorPage} />
+         </Switch>
+         </Security>
+       </div>
+     </Router>
+   );
+ }
 
 export default App;
