@@ -102,13 +102,14 @@ class PixabaySearch extends Component {
 
                 <div className="all_pixabay_results">
                     {this.state.pictures.map(picture => (
-                        <img 
-                        src={picture.previewURL} 
-                        alt={picture.tags} 
-                        id={picture.id} 
-                        key={picture.id} 
-                        className="pixabay_results"/>
-                        
+                        <a href={picture.webformatURL} >
+                          <img 
+                          src={picture.previewURL} 
+                          alt={picture.tags} 
+                          id={picture.id} 
+                          key={picture.id} 
+                          className="pixabay_results"/>
+                        </a>
                     ))}
                 </div>
             </div>

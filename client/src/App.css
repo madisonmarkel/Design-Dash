@@ -8,6 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+hr {
+  margin-top:3em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -15,10 +19,11 @@ code {
 
 .btn {
   padding:.2em 1em;
-  margin-bottom:1em;
-  margin-right:1em;
+  margin: 1em 1em 1em 0;
   font-size:1em;
   border-radius: .2em;
+  background: #f17058;
+  color:#fff;
 }
 
 /* HEADER */
@@ -46,6 +51,26 @@ code {
   .home {
     padding:1em 1em 0;
   }
+  Input {
+    width: 30em;
+    font-size: .9em;
+    height: 2.5em;
+    background: white;
+    border: none;
+    margin-top: .5em;
+    border-radius: .2em;
+    box-shadow: 1px 1px 4px #2e3648;
+  }
+  TextArea {
+    width: 30em;
+    font-size: .9em;
+    height: 2.5em;
+    background: white;
+    border: none;
+    margin-top: .5em;
+    border-radius: .2em;
+    box-shadow: 1px 1px 4px #2e3648;
+  }
 
 /* NAVIGATION */
 .navigation {
@@ -53,7 +78,7 @@ code {
   float:left;
   padding: 1em;
   margin-right: 3em;
-  height:100vh;
+  height:175vh;
 }
 
 /* MAIN MAIN */
@@ -80,4 +105,7 @@ code {
     margin-right:1em;
     font-size:1em;
     border-radius: .2em;
+  }
+  .brandImages {
+    max-width: 250px;
   }

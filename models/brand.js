@@ -6,7 +6,8 @@ const brandSchema = new Schema({
   industry: { type: String, required: true },
   slogan: String,
   logo: String,
-  colors: String,
+  mainColor: String,
+  supportingColor: String,
   images: String,
   date: { type: Date, default: Date.now }
 });

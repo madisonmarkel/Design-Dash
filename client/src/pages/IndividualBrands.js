@@ -46,9 +46,19 @@ class IndividualBrands extends Component {
               <h2>
                 Slogan: {this.state.brand.slogan}
               </h2>
-              <h2>
+              <h2>Logo:</h2>
+                <img className="brand_images" alt="Company logo" src={this.state.brand.logo}/>
+              <h2>Additional Image:</h2>
+                <img className="brand_images" alt="Company logo" src={this.state.brand.images}/>
+              <h2>Main Color:</h2>
+                <p>{this.state.brand.mainColor}</p>
+                <div style={{ background: this.state.brand.mainColor, padding: 10 }}/>
+              <h2>Supporting Color:</h2>
+                <p>{this.state.brand.supportingColor}</p>
+                <div style={{ background: this.state.brand.supportingColor, padding: 10 }}/>
+              <p>
                 Date Created: {this.state.brand.date}
-              </h2>
+              </p>
               <button className="btn" onClick={() => this.updateBrand(this.state.brand._id)}>Update</button>
               <button className="deleteButton" onClick={() => this.deleteBrand(this.state.brand._id)}>Delete</button>
               <br/>

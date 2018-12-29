@@ -4,6 +4,7 @@ import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import { YourBrands, ListItem } from "../components/YourBrands";
 import API from "../utils/API";
+import AddForm from "../components/AddForm";
 import { Link } from "react-router-dom";
 
 //const PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
@@ -79,7 +80,8 @@ class Brands extends Component {
                 ))}
               </YourBrands>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>Add a Brand</h3>
+                // <AddForm />
             )}
             </div>
           </div>

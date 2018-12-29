@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import './App.css';
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import AddForm from "../components/AddForm";
 import API from "../utils/API";
 //import YourBrands from "../components/YourBrands"
 import { Input, TextArea, FormBtn } from "../components/Form";
@@ -18,7 +19,11 @@ class App extends Component {
     brands: [],
     name: "",
     industry: "",
-    slogan: ""
+    slogan: "",
+    logo: "", 
+    mainColor: "",
+    supportingColor: "",
+    images: "",
   };
 
   componentDidMount() {
@@ -28,7 +33,7 @@ class App extends Component {
   loadBrands = () => {
     API.getBrands()
       .then(res =>
-        this.setState({ brands: res.data, name: "", industry: "", slogan: "" })
+        this.setState({ brands: res.data, name: "", industry: "", slogan: "", logo: "", mainColor: "", supportingColor: "", images: "", })
       )
       .catch(err => console.log(err));
   };
@@ -52,7 +57,11 @@ class App extends Component {
       API.saveBrand({
         name: this.state.name,
         industry: this.state.industry,
-        slogan: this.state.slogan
+        slogan: this.state.slogan,
+        logo: this.state.logo,
+        mainColor: this.state.mainColor,
+        supportingColor: this.state.supportingColor,
+        images: this.state.images
       })
         .then(res => this.loadBrands())
         .catch(err => console.log(err));
@@ -102,18 +111,19 @@ class App extends Component {
             <p>Design Dash also allows you to create a brand image. Search for photos, colors, and inspiration to guide your brand identity. </p>
             <p>Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.</p>
             <h2>Add a Brand</h2>
-            <form>
+            <AddForm/>
+            {/* <form>
                 <Input
                   value={this.state.name}
                   onChange={this.handleInputChange}
                   name="name"
-                  placeholder="name (required)"
+                  placeholder="Company Name (Required)"
                 />
                 <Input
                   value={this.state.industry}
                   onChange={this.handleInputChange}
                   name="industry"
-                  placeholder="Industry (required)"
+                  placeholder="Industry (Required)"
                 />
                 <TextArea
                   value={this.state.slogan}
@@ -128,16 +138,22 @@ class App extends Component {
                   placeholder="Logo Image Link (Optional)"
                 />
                 <TextArea
-                  value={this.state.colors}
+                  value={this.state.mainColor}
                   onChange={this.handleInputChange}
-                  name="colors"
-                  placeholder="Brand Color Code (Optional)"
+                  name="mainColor"
+                  placeholder="Main Color HEX Code (Optional)"
+                />
+                <TextArea
+                  value={this.state.supportingColor}
+                  onChange={this.handleInputChange}
+                  name="supportingColor"
+                  placeholder="Supporting Color HEX Code (Optional)"
                 />
                 <TextArea
                   value={this.state.images}
                   onChange={this.handleInputChange}
                   name="images"
-                  placeholder="Additional Image Links (Optional)"
+                  placeholder="Additional Image Link (Optional)"
                 />
                 <FormBtn
                   disabled={!(this.state.name && this.state.industry)}
@@ -145,7 +161,8 @@ class App extends Component {
                 >
                   Submit New Brand
                 </FormBtn>
-              </form>
+              </form> */}
+              <br/><hr/><br/>
               <YourBrands>
                   {this.state.brands.map(brand => (
                     <ListItem key={brand._id}>
