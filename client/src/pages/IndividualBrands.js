@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import UpdateModal from "../components/UpdateBrands";
 import '../App.css';
 
 class IndividualBrands extends Component {
@@ -49,7 +49,7 @@ class IndividualBrands extends Component {
               <h2>Logo:</h2>
                 <img className="brand_images" alt="Company logo" src={this.state.brand.logo}/>
               <h2>Additional Image:</h2>
-                <img className="brand_images" alt="Company logo" src={this.state.brand.images}/>
+                <img className="brand_images" alt="Additional Photos" src={this.state.brand.images}/>
               <h2>Main Color:</h2>
                 <p>{this.state.brand.mainColor}</p>
                 <div style={{ background: this.state.brand.mainColor, padding: 10 }}/>
@@ -59,7 +59,8 @@ class IndividualBrands extends Component {
               <p>
                 Date Created: {this.state.brand.date}
               </p>
-              <button className="btn" onClick={() => this.updateBrand(this.state.brand._id)}>Update</button>
+              <UpdateModal/>
+              {/* <button className="btn" onClick={() => this.updateBrand(this.state.brand._id)}>Update</button> */}
               <button className="deleteButton" onClick={() => this.deleteBrand(this.state.brand._id)}>Delete</button>
               <br/>
             <Link to="/brands">← Your Brands</Link>

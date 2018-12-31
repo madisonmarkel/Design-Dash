@@ -9,6 +9,10 @@ export default {
   getBrand: function(id) {
     return axios.get("/api/brands/" + id);
   },
+  // Updates the brand with the given id
+  updateBrand: function(id) {
+    return axios.put("/api/brands/" + id);
+  },
   // Deletes the brand with the given id
   deleteBrand: function(id) {
     return axios.delete("/api/brands/" + id);

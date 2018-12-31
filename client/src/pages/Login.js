@@ -12,7 +12,7 @@ import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { Input } from "../components/Form";
 
-export default withAuth(class Home extends Component {
+export default withAuth(class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { authenticated: null };
@@ -68,24 +68,24 @@ export default withAuth(class Home extends Component {
             <p>Here you can save multiple company's branding information. Ranging from colors, logos, slogan, and industry, Design Dash is the easiest way to manage and share information with your team.</p>
             <p>Design Dash also allows you to create a brand image. Search for photos, colors, and inspiration to guide your brand identity. </p>
             <p>Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.</p>
-              <img className="squiggle" src="../squiggle.png" alt="Squiggle Line"/>
+              
             <hr/>
             <div className="col_half">
                 <form>
                     <h2 id="login">Login</h2>
                     <Input
-                    value={this.state.industry}
+                    value={this.state.email}
                     onChange={this.handleInputChange}
                     name="email"
                     placeholder="Email Address(Required)"
                     />
                     <Input
-                    value={this.state.industry}
+                    value={this.state.password}
                     onChange={this.handleInputChange}
                     name="password"
                     placeholder="Password(Required)"
                     />
-                    <button className="btn" onClick={this.login}>Login</button>
+                    <button class="btn"onClick={this.login}>Login</button>
                 </form>
             </div>
             {/* <button className="btn"><Link to="/home">Login</Link></button> */}
@@ -93,13 +93,13 @@ export default withAuth(class Home extends Component {
                 <form>
                     <h2 id="signup">Sign Up</h2>
                     <Input
-                    value={this.state.industry}
+                    value={this.state.email}
                     onChange={this.handleInputChange}
                     name="email"
                     placeholder="Email Address(Required)"
                     />
                     <Input
-                    value={this.state.industry}
+                    value={this.state.password}
                     onChange={this.handleInputChange}
                     name="password"
                     placeholder="Password(Required)"
@@ -111,9 +111,8 @@ export default withAuth(class Home extends Component {
           </div>
         </div>
       </div>
-    );
-  }
+     );
+  // }
 }
-)
-
-//export default Login;
+})
+// export default Login;
