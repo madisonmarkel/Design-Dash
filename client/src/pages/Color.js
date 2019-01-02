@@ -69,13 +69,7 @@ class ColorMindSearch extends Component {
         //When you set the initial state, you want to set it as empty, or blank.
         this.state = {
             color: [],
-            // data: {
-            //   model : "default",
-            //   input : [[44,43,44],[90,83,82],"N","N","N"]
-            // }
         }
-        // This binding is necessary to make `this` work in the callback
-        // this.handleClick = this.handleClick.bind(this);
       }
 
       callAPI = (data, group, button) =>{
@@ -89,12 +83,8 @@ class ColorMindSearch extends Component {
             if(http.readyState == 4 && http.status == 200) {
                 var palette = JSON.parse(http.responseText).result;
                 console.log(palette);
-                // this.setState({ color: palette });
             } else {
                 console.error(http.statusText);
-                // res.send(palette);
-                // color:palette;
-                //http.send(JSON.stringify(palette));
             }
         }        
 
@@ -106,7 +96,7 @@ class ColorMindSearch extends Component {
         http.onload = function (e) {
             if (http.readyState === 4) {
                 if (http.status === 200) {
-                var json_obj = JSON.parse(http.responseText);
+                var json_obj = JSON.parse(http.responseText).result;
                 console.log(json_obj);
                 //status = true;
                 this.setState({ json_obj });
@@ -239,11 +229,12 @@ class ColorMindSearch extends Component {
                   </button>
               </div>
               <div className="all_pixabay_results">
-                    {/* {this.state.color.map(colors => (
-                        <div style={{ background: this.state.colors, padding: 10 }}>
+                    {this.state.color.map(colors => (
+                        <div //style={{ background: this.state.colors, padding: 10 }}
+                        >
                           <p>Color</p>
                         </div>
-                    ))} */}
+                    ))}
                 </div>
             </div>
         </div>
