@@ -9,7 +9,6 @@ import React, {Component} from "react";
 import API from "../../utils/API";
 import Input from "../Input";
 import Button from "../Button"
-import CopyPixabayPhotosToClipboard from "../CopyPixabayPhotos"
 
 //import callAPI from "./PixabayAPI";
 //import REACT_APP_PIXABAY_API_KEY from "../../env"
