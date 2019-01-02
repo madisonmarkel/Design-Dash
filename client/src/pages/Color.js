@@ -80,8 +80,8 @@ class ColorMindSearch extends Component {
             input : [[44,43,44],[90,83,82],"N","N","N"]
         }
         console.log(this)
-        console.log(this.state);
-        console.log(this.state.color);
+        // console.log(this.state);
+        // console.log(this.state.color);
         http.onreadystatechange = function(res) {
             if(http.readyState == 4 && http.status == 200) {
                 var palette = JSON.parse(http.responseText).result;
@@ -231,6 +231,7 @@ class ColorMindSearch extends Component {
                   </button>
               </div>
               <div className="all_pixabay_results">
+                
                     {/* {this.state.color.map(colors => (
                         <div //style={{ background: this.state.colors, padding: 10 }}
                         >
