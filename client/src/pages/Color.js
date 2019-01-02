@@ -19,6 +19,13 @@ class ColorMindSearch extends Component {
         // this.handleClick = this.handleClick.bind(this);
       }
 
+      rgbToHex(rgb){
+        return "#" +
+         ("0" + parseInt(rgb[0]).toString(16)).slice(-2) +
+         ("0" + parseInt(rgb[1]).toString(16)).slice(-2) +
+         ("0" + parseInt(rgb[2]).toString(16)).slice(-2);
+       }
+
       callAPI = (data, group, button) =>{
 		var http = new XMLHttpRequest();
 		var url = "http://colormind.io/api/";
