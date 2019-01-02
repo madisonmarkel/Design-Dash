@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-import UpdateModal from "../components/UpdateBrands";
+import UpdateModal from "../components/Modal";
 import '../App.css';
 
 class IndividualBrands extends Component {
@@ -17,6 +17,19 @@ class IndividualBrands extends Component {
       .then(res => this.setState({ brand: res.data }))
       .catch(err => console.log(err));
   }
+
+  passID() {
+    this.setState({
+        brandID: !this.state.brand._id,
+        brandName: !this.state.brand.name,
+        brandIndustry: !this.state.brand.industry,
+        brandSlogan: !this.state.brand.slogan,
+        brandLogo: !this.state.brand.logo,
+        brandImages: !this.state.brand.images,
+        brandMainColor: !this.state.brand.mainColor,
+        brandSupportingColor: !this.state.brand.supportingColor,
+    });
+  };
 
   // Deletes a book from the database with a given id, then reloads books from the db
   deleteBrand = id => {
@@ -59,7 +72,16 @@ class IndividualBrands extends Component {
               <p>
                 Date Created: {this.state.brand.date}
               </p>
-              <UpdateModal/>
+              <UpdateModal key={() => this.passID(this.state.brand._id)} 
+                brandID= {this.state.brand._id}
+                brandName= {this.state.brand.name}
+                brandIndustry= {this.state.brand.industry}
+                brandSlogan= {this.state.brand.slogan}
+                brandLogo= {this.state.brand.logo}
+                brandImages= {this.state.brand.images}
+                brandMainColor= {this.state.brand.mainColor}
+                brandSupportingColor= {this.state.brand.supportingColor}
+              />
               {/* <button className="btn" onClick={() => this.updateBrand(this.state.brand._id)}>Update</button> */}
               <button className="deleteButton" onClick={() => this.deleteBrand(this.state.brand._id)}>Delete</button>
               <br/>

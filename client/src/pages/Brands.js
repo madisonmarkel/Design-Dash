@@ -30,11 +30,11 @@ class Brands extends Component {
       .catch(err => console.log(err));
   };
 
-  deleteBrand = id => {
-    API.deleteBrand(id)
-      .then(res => this.loadBrands())
-      .catch(err => console.log(err));
-  };
+  // deleteBrand = id => {
+  //   API.deleteBrand(id)
+  //     .then(res => this.loadBrands())
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
     const { name, value } = event.target;

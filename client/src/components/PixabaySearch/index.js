@@ -9,6 +9,7 @@ import React, {Component} from "react";
 import API from "../../utils/API";
 import Input from "../Input";
 import Button from "../Button"
+import CopyPixabayPhotosToClipboard from "../CopyPixabayPhotos"
 
 //import callAPI from "./PixabayAPI";
 //import REACT_APP_PIXABAY_API_KEY from "../../env"
@@ -39,6 +40,21 @@ class PixabaySearch extends Component {
             .catch(err => console.log(err));
         };
 
+        copyToClipboard = (e) => {
+          console.log(this.value);
+          // this.webformatURL.select();
+          // document.execCommand('copy');
+
+          var copyText = "Test";
+          copyText.select();
+          document.execCommand("copy");
+          alert("Copied the text: " + copyText.value);
+          // This is just personal preference.
+          // I prefer to not show the the whole text area selected.
+          
+          };
+        
+
       render() {
         //const { pixabaySearch } = this.state;
         return(
@@ -60,14 +76,19 @@ class PixabaySearch extends Component {
 
                 <div className="all_pixabay_results">
                     {this.state.pictures.map(picture => (
+                      <div ref={picture.webformatURL}>
                         <a href={picture.webformatURL} key={picture.id}>
                           <img 
                           src={picture.previewURL} 
                           alt={picture.tags} 
-                          id={picture.id} 
+                          id="copyPhoto" 
                           key={picture.id} 
+                          value={picture.webformatURL} 
+                          // ref={(copyinfo) => this.copyInfo = copyinfo}
                           className="pixabay_results"/>
                         </a>
+                        <button className="btn" onClick={this.copyToClipboard} value={picture.webformatURL}>Copy Image Link to Clipboard</button>
+                      </div>
                     ))}
                 </div>
             </div>
