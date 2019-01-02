@@ -63,14 +63,14 @@ import Header from "../components/Header";
 //   export default ColorMindSearch;
 
 class ColorMindSearch extends Component {
-    constructor() {
+    // constructor() {
         //super = pass any props from the parent to the child component.
-        super();
+        // super();
         //When you set the initial state, you want to set it as empty, or blank.
-        this.state = {
-            color: [],
+        state = {
+            // color: [],
         }
-      }
+    //   }
 
       callAPI = (data, group, button) =>{
 		var http = new XMLHttpRequest();
@@ -79,6 +79,9 @@ class ColorMindSearch extends Component {
             model : "default",
             input : [[44,43,44],[90,83,82],"N","N","N"]
         }
+        console.log(this)
+        console.log(this.state);
+        console.log(this.state.color);
         http.onreadystatechange = function(res) {
             if(http.readyState == 4 && http.status == 200) {
                 var palette = JSON.parse(http.responseText).result;
@@ -97,9 +100,8 @@ class ColorMindSearch extends Component {
             if (http.readyState === 4) {
                 if (http.status === 200) {
                 var json_obj = JSON.parse(http.responseText).result;
+                this.setState( json_obj );
                 console.log(json_obj);
-                //status = true;
-                this.setState({ json_obj });
                 } else {
                 console.error(http.statusText);
                 }
@@ -229,12 +231,18 @@ class ColorMindSearch extends Component {
                   </button>
               </div>
               <div className="all_pixabay_results">
-                    {this.state.color.map(colors => (
+                    {/* {this.state.color.map(colors => (
                         <div //style={{ background: this.state.colors, padding: 10 }}
                         >
-                          <p>Color</p>
+                          <p id={colors}>Color</p>
                         </div>
-                    ))}
+                    ))} */}
+                    {/* {this.state.map(colors => (
+                        <div //style={{ background: this.state.colors, padding: 10 }}
+                        >
+                          <p id={colors}>Color</p>
+                        </div>
+                    ))} */}
                 </div>
             </div>
         </div>
