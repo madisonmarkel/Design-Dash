@@ -3,6 +3,65 @@ import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 //import callAPI from "./PixabayAPI";
 
+// class ColorMindSearch extends React.Component {
+//     state = {}
+  
+//     componentDidMount() {
+//       var http = new XMLHttpRequest();
+//       var json_obj, status = false;
+//       http.open("GET", "http://colormind.io/api/", true);
+//       http.onload = function (e) {
+//         if (http.readyState === 4) {
+//           if (http.status === 200) {
+//             var json_obj = JSON.parse(http.responseText).result;
+//             status = true;
+//             this.setState({ json_obj });
+//           } else {
+//             console.error(http.statusText);
+//           }
+//         }
+//       }.bind(this);
+//       http.onerror = function (e) {
+//         console.error(http.statusText);
+//       };
+//       http.send(null);
+//     }
+  
+//     render() {
+//       return (
+//         <div className="App">
+//         <img alt="dunno" src= {this.state.json_obj ?  this.state.json_obj[0].url : 'loading...'}></img>
+//            <header className="App-header">
+//              <Header/>
+//            </header>
+//            <div className="main_app">
+//                <Navigation/>
+          
+//                <div className="searches">
+//                <h2>Color Generator</h2>
+//                    <button 
+//                      type="submit" 
+//                      id="pixabay_submit"
+//                      className="btn"
+//                         onClick={this.handleClick}>
+//                      {/* onClick={this.callAPI}> */}
+//                        Generate Colors
+//                    </button>
+//                </div>
+//                <div className="all_pixabay_results">
+//                      {/* {this.state.color.map(colors => (
+//                          <div style={{ background: this.state.colors, padding: 10 }}>
+//                            <p>Color</p>
+//                          </div>
+//                      ))} */}
+//                  </div>
+//              </div>
+//          </div>
+//       );
+//     }
+//   }
+//   export default ColorMindSearch;
+
 class ColorMindSearch extends Component {
     constructor() {
         //super = pass any props from the parent to the child component.
@@ -19,13 +78,6 @@ class ColorMindSearch extends Component {
         // this.handleClick = this.handleClick.bind(this);
       }
 
-      rgbToHex(rgb){
-        return "#" +
-         ("0" + parseInt(rgb[0]).toString(16)).slice(-2) +
-         ("0" + parseInt(rgb[1]).toString(16)).slice(-2) +
-         ("0" + parseInt(rgb[2]).toString(16)).slice(-2);
-       }
-
       callAPI = (data, group, button) =>{
 		var http = new XMLHttpRequest();
 		var url = "http://colormind.io/api/";
@@ -33,10 +85,15 @@ class ColorMindSearch extends Component {
             model : "default",
             input : [[44,43,44],[90,83,82],"N","N","N"]
         }
-        http.onreadystatechange = function() {
+        http.onreadystatechange = function(res) {
             if(http.readyState == 4 && http.status == 200) {
                 var palette = JSON.parse(http.responseText).result;
                 console.log(palette);
+                // this.setState({ color: palette });
+            } else {
+                console.error(http.statusText);
+                // res.send(palette);
+                // color:palette;
                 //http.send(JSON.stringify(palette));
             }
         }        
@@ -45,6 +102,22 @@ class ColorMindSearch extends Component {
             console.log(http);
             http.send(JSON.stringify(data));
             console.log(data);
+
+        http.onload = function (e) {
+            if (http.readyState === 4) {
+                if (http.status === 200) {
+                var json_obj = JSON.parse(http.responseText);
+                console.log(json_obj);
+                //status = true;
+                this.setState({ json_obj });
+                } else {
+                console.error(http.statusText);
+                }
+            }
+            }.bind(this);
+            http.onerror = function (e) {
+            console.error(http.statusText);
+            };
         // var palette = JSON.parse(http.responseText).result;
         // console.log(palette);
 
