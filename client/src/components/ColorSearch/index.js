@@ -10,7 +10,7 @@ export const callAPI = () =>
     .then(data => {
         console.log(data.result);
     })
-export default callAPI;
+export default callAPI; 
 
 
 
