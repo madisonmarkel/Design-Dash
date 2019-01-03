@@ -59,13 +59,13 @@ class Brands extends Component {
     //   API.updateBrand({
     API.updateBrand(id, 
         {
-        name: this.props.brandName,
-        industry: this.props.brandIndustry,
-        slogan: this.props.brandSlogan,
-        logo: this.props.brandLogo,
-        mainColor: this.props.brandMainColor,
-        supportingColor: this.props.brandSupportingColor,
-        images: this.props.brandImages
+        name: this.brandName,
+        industry: this.brandIndustry,
+        slogan: this.brandSlogan,
+        logo: this.brandLogo,
+        mainColor: this.brandMainColor,
+        supportingColor: this.brandSupportingColor,
+        images: this.brandImages
         }
       )
       .then(res => this.loadBrands(), 
@@ -84,6 +84,7 @@ class Brands extends Component {
                 <h4>Name</h4>
                 <TextArea
                   value={this.props.brandName}
+                  // value={this.props.brandName}
                   onChange={this.handleInputChange}
                   name="name"
                   placeholder="Company Name (Required)"
@@ -91,6 +92,7 @@ class Brands extends Component {
                 <h4>Industry</h4>
                 <TextArea
                   value={this.props.brandIndustry}
+                  // value={this.props.brandIndustry}
                   onChange={this.handleInputChange}
                   name="industry"
                   placeholder="Industry (Required)"
@@ -98,6 +100,7 @@ class Brands extends Component {
                 <h4>Slogan</h4>
                 <TextArea
                   value={this.props.brandSlogan}
+                  // value={this.props.brandSlogan}
                   onChange={this.handleInputChange}
                   name="slogan"
                   placeholder="Slogan (Optional)"
@@ -105,6 +108,7 @@ class Brands extends Component {
                 <h4>Logo</h4>
                 <TextArea
                   value={this.props.brandLogo}
+                  // value={this.props.brandLogo}
                   onChange={this.handleInputChange}
                   name="logo"
                   placeholder="Logo Image Link (Optional)"
@@ -112,6 +116,7 @@ class Brands extends Component {
                 <h4>Additional Image</h4>
                 <TextArea
                   value={this.props.brandImages}
+                  // value={this.props.brandImages}
                   onChange={this.handleInputChange}
                   name="images"
                   placeholder="Additional Image Link (Optional)"
@@ -119,6 +124,7 @@ class Brands extends Component {
                 <h4>Main Color (HEX Code)</h4>
                 <TextArea
                   value={this.props.brandMainColor}
+                  // value={this.props.brandMainColor}
                   onChange={this.handleInputChange}
                   name="mainColor"
                   placeholder="Main Color HEX Code (Optional)"
@@ -126,6 +132,7 @@ class Brands extends Component {
                 <h4>Supporting Color (HEX Code)</h4>
                 <TextArea
                   value={this.props.brandSupportingColor}
+                  // value={this.props.brandSupportingColor}
                   onChange={this.handleInputChange}
                   name="supportingColor"
                   placeholder="Supporting Color HEX Code (Optional)"

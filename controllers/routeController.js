@@ -3,7 +3,6 @@ const db = require("../models");
 // Defining methods for the booksController
 module.exports = {
   findAll: function(req, res) {
-    console.log("==========================================================================" + req.query);
     db.Brand
       .find(req.query)
       .sort({ date: -1 })
@@ -25,6 +24,7 @@ module.exports = {
   update: function(req, res) {
     db.Brand
       .findOneAndUpdate({ _id: req.params.id }, req.body)
+      // .then(console.log(req.body))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

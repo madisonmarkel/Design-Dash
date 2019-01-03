@@ -13,7 +13,8 @@ import { Security, ImplicitCallback } from '@okta/okta-react';
 const config = {
   issuer: 'https://dev-687371.oktapreview.com',
   redirect_uri: window.location.origin + '/implicit/callback',
-  client_id: '0oainhuo94dnScBmE0h7'
+  client_id: '0oainhuo94dnScBmE0h7',
+  API_KEY: process.env.REACT_APP_PIXABAY_API_KEY
 }
 
 // class App extends Component {

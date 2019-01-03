@@ -30,6 +30,7 @@ class ColorMindSearch extends Component {
                 })
                 .then(response => response.json()); // parses response to JSON
             }
+        console.log(this.state);
     }
 
       render() {
