@@ -53,9 +53,9 @@ import { Input, TextArea, FormBtn } from "../components/Form";
         email: this.state.email,
         password: this.state.password,
       })
-        // .then(this.props.auth.login('/home'))
+        .then(window.location.assign("/home"))
         //.then(res => this.loadBrands())
-        .then(res => this.login())
+        //.then(res => this.login())
         .catch(err => console.log(err));
     }
   };
@@ -99,7 +99,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
             <hr/>
             <div className="col_half">
                 <form>
-                    <h2 id="login">Login</h2>
+                    <h2 id="signup">Sign Up</h2>
                     <Input
                     value={this.state.email}
                     onChange={this.handleInputChange}
@@ -116,14 +116,14 @@ import { Input, TextArea, FormBtn } from "../components/Form";
                      className="btn"
                     //  disabled={!(this.state.email && this.state.password)}
                      onClick={this.handleFormSubmit}>
-                     Login
+                     Sign Up
                      </FormBtn>
                 </form>
             </div>
             {/* <button className="btn"><Link to="/home">Login</Link></button> */}
             <div className="col_half">
                 <form>
-                    <h2 id="signup">Sign Up</h2>
+                    <h2 id="login">Login</h2>
                     <Input
                     value={this.state.email}
                     onChange={this.handleInputChange}
@@ -136,7 +136,13 @@ import { Input, TextArea, FormBtn } from "../components/Form";
                     name="password"
                     placeholder="Password(Required)"
                     />
-                    <button className="btn"><Link to="/home">Sign Up</Link></button>
+                    <FormBtn
+                     className="btn"
+                    //  disabled={!(this.state.email && this.state.password)}
+                     onClick={this.login}>
+                     Sign Up
+                     </FormBtn>
+                    {/* <button className="btn"><Link to="/home">Login</Link></button> */}
                 </form>
             </div>
             <p><a href="/">Forgot Password?</a></p>
