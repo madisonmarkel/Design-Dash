@@ -6,11 +6,21 @@ class ColorMindSearch extends Component {
         color: [],
     };
 
+    // componentDidUpdate () {
     callAPI = () => {
         postData(`http://colormind.io/api/`)
             .then(res => {
                 console.log(res); 
-                this.setState({ color: res })
+                this.setState({ color: res }, () => {
+                    // this.props.getCalendarData(this.state.color)
+                    console.log(this.state.color);
+                    // this.state.color.result.map(colors => (
+                    //     <div //style={{ background: this.state.colors, padding: 10 }}
+                    //     >
+                    //       <p id={colors.result}>Color</p>
+                    //     </div>
+                    // ));
+                  });
                 console.log(this);
                 console.log(this.state);
             })
@@ -51,7 +61,7 @@ class ColorMindSearch extends Component {
               </div>
               <div className="all_pixabay_results">
                 
-                    {/* {this.state.color.map(colors => (
+                    {/* {this.state.color.result.map(colors => (
                         <div //style={{ background: this.state.colors, padding: 10 }}
                         >
                           <p id={colors.result}>Color</p>
