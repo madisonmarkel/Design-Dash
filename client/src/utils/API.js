@@ -22,6 +22,10 @@ export default {
   saveBrand: function(brandData) {
     return axios.post("/api/brands", brandData);
   },
+  // Saves a user to the database
+  saveUser: function(userData) {
+    return axios.post("/api/users", userData);
+  },
   getPixabayImages: function(query) {
     console.log("SRC/UTILS/API GETPIXABAYIMAGES FUNCTION ROUTE");
     return axios.get("/api/pixabay", { params: { q: query } });

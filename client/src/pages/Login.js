@@ -5,43 +5,70 @@ import { withAuth } from '@okta/okta-react';
 //import './App.css';
 //import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-//import API from "../utils/API";
+import API from "../utils/API";
 //import YourBrands from "../components/YourBrands"
 //import { Input, TextArea, FormBtn } from "../components/Form";
 //import { YourBrands, ListItem } from "../components/YourBrands";
 import { Link } from "react-router-dom";
-import { Input } from "../components/Form";
+import { Input, TextArea, FormBtn } from "../components/Form";
 
-export default withAuth(class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { authenticated: null };
-    this.checkAuthentication = this.checkAuthentication.bind(this);
-    this.checkAuthentication();
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
-  }
+// export default withAuth(
+  class Login extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { authenticated: null };
+  //   this.checkAuthentication = this.checkAuthentication.bind(this);
+  //   this.checkAuthentication();
+  //   this.login = this.login.bind(this);
+  //   this.logout = this.logout.bind(this);
+  // }
+  state = {
+    users: [],
+    email: "",
+    password: "",
+  };
 
-  async checkAuthentication() {
-    const authenticated = await this.props.auth.isAuthenticated();
-    if (authenticated !== this.state.authenticated) {
-      this.setState({ authenticated });
+  // async checkAuthentication() {
+  //   const authenticated = await this.props.auth.isAuthenticated();
+  //   if (authenticated !== this.state.authenticated) {
+  //     this.setState({ authenticated });
+  //   }
+  // }
+
+  // componentDidUpdate() {
+  //   this.checkAuthentication();
+  // }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.email && this.state.password) {
+      API.saveUser({
+        email: this.state.email,
+        password: this.state.password,
+      })
+        // .then(this.props.auth.login('/home'))
+        //.then(res => this.loadBrands())
+        .then(res => this.login())
+        .catch(err => console.log(err));
     }
-  }
-
-  componentDidUpdate() {
-    this.checkAuthentication();
-  }
+  };
 
   async login() {
     // Redirect to '/' after login
     this.props.auth.login('/home');
-  }
+  };
 
-  async logout() {
-    // Redirect to '/' after logout
-    this.props.auth.logout('/');
-  }
+  // async logout() {
+  //   // Redirect to '/' after logout
+  //   this.props.auth.logout('/');
+  // }
 
 //   render() {
 //     if (this.state.authenticated === null) return null;
@@ -85,7 +112,12 @@ export default withAuth(class Login extends Component {
                     name="password"
                     placeholder="Password(Required)"
                     />
-                    <button class="btn"onClick={this.login}>Login</button>
+                    <FormBtn
+                     className="btn"
+                    //  disabled={!(this.state.email && this.state.password)}
+                     onClick={this.handleFormSubmit}>
+                     Login
+                     </FormBtn>
                 </form>
             </div>
             {/* <button className="btn"><Link to="/home">Login</Link></button> */}
@@ -114,5 +146,6 @@ export default withAuth(class Login extends Component {
      );
   // }
 }
-})
-// export default Login;
+}
+// )
+export default Login;
