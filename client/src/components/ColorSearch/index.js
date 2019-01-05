@@ -6,6 +6,13 @@ class ColorMindSearch extends Component {
         color: [],
     };
 
+    rgbToHex(color){
+        return "#" +
+         ("0" + parseInt(color[0]).toString(16)).slice(-2) +
+         ("0" + parseInt(color[1]).toString(16)).slice(-2) +
+         ("0" + parseInt(color[2]).toString(16)).slice(-2);
+       }
+
     // componentDidUpdate () {
     callAPI = () => {
         return fetch(`http://colormind.io/api/`, {
@@ -22,7 +29,6 @@ class ColorMindSearch extends Component {
 
     setColor = () => {
         this.callAPI().then(data => this.setState({color: data.result}))
-
     }
       render() {
         //const { color } = this.state;
@@ -37,23 +43,17 @@ class ColorMindSearch extends Component {
                     className="btn"
                     //onClick={this.handleClick}>
                     onClick={this.setColor}>
-                      Generate Colors
+                      New Palette
                   </button>
               </div>
               <div className="all_pixabay_results">
                 
                     {this.state.color.map(colors => (
-                        <div //style={{ background: this.state.colors, padding: 10 }}
+                        <div key={colors} style={{ background: "rgb(" + colors + ")", padding: 10 }}
                         >
-                          <p id={colors.result}>Color</p>
+                          <p id={colors}>rgb({colors.toString()})</p>
                         </div>
                     ))}
-                    {/* {this.state.map(colors => ( */}
-                        {/* <div //style={{ background: this.state.colors, padding: 10 }}
-                        >
-                          <p id={colors}>Color</p>
-                        </div>
-                    ))} */}
             </div>
         </div>
         )
