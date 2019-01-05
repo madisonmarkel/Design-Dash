@@ -15,6 +15,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByIdAndUpdate: function(req, res){
+    db.Brand 
+      .findByIdAndUpdate(req.params.id)
+      .then( dbModel => {dbModel.update( req.body )}) 
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Brand
       .create(req.body)

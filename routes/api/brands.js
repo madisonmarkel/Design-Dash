@@ -10,7 +10,7 @@ router.route("/")
 router
   .route("/:id")
   .get(routeController.findById)
-  .put(routeController.update)
+  .put(routeController.findByIdAndUpdate)
   .delete(routeController.remove);
 
 module.exports = router;
