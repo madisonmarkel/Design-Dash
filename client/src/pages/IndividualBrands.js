@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import UpdateModal from "../components/Modal";
 import '../App.css';
+import { TextArea } from "../components/Form";
 
 class IndividualBrands extends Component {
   state = {
@@ -30,6 +31,38 @@ class IndividualBrands extends Component {
         brandSupportingColor: !this.state.brand.supportingColor,
     });
   };
+  handleFormSubmit = (id, body) => {
+    // event.preventDefault();
+    //   API.updateBrand({
+    API.updateBrand(id, body
+        // {
+        // name: this.state.brandName,
+        // industry: this.state.brandIndustry,
+        // slogan: this.state.brandSlogan,
+        // logo: this.state.brandLogo,
+        // mainColor: this.state.brandMainColor,
+        // supportingColor: this.state.brandSupportingColor,
+        // images: this.state.brandImages
+        // }
+      )
+      .then(res => this.loadBrands(), this.props.history.push('/brands'))
+        .catch(err => console.log(err));
+    }
+
+    loadBrands = () => {
+      API.getBrands()
+        .then(res =>
+          this.setState({ brands: res.data, name: "", industry: "", slogan: "", logo: "", mainColor: "", supportingColor: "", images: "", })
+        )
+        .catch(err => console.log(err));
+    };
+
+  saveChanges = (id, body) => {
+    console.log(id)
+    API.updateBrand(id, body)
+      .then(res => this.props.history.push('/brands'))
+      .catch(err => console.log(err));
+  }
 
   // Deletes a book from the database with a given id, then reloads books from the db
   deleteBrand = id => {
@@ -86,6 +119,81 @@ class IndividualBrands extends Component {
               <button className="deleteButton" onClick={() => this.deleteBrand(this.state.brand._id)}>Delete</button>
               <br/>
             <Link to="/brands">← Your Brands</Link>
+
+            <h2>Edit {this.state.brandName}</h2>
+      <p>ID: {this.state.id}</p>
+              <form>
+                <h4>Name</h4>
+                <TextArea
+                  value={this.state.brandName}
+                  // value={this.props.brandName}
+                  onChange={this.handleInputChange}
+                  name="name"
+                  placeholder="Company Name (Required)"
+                />
+                <h4>Industry</h4>
+                <TextArea
+                  value={this.state.brandIndustry}
+                  // value={this.props.brandIndustry}
+                  onChange={this.handleInputChange}
+                  name="industry"
+                  placeholder="Industry (Required)"
+                />
+                <h4>Slogan</h4>
+                <TextArea
+                  value={this.state.brandSlogan}
+                  // value={this.props.brandSlogan}
+                  onChange={this.handleInputChange}
+                  name="slogan"
+                  placeholder="Slogan (Optional)"
+                />
+                <h4>Logo</h4>
+                <TextArea
+                  value={this.state.brandLogo}
+                  // value={this.props.brandLogo}
+                  onChange={this.handleInputChange}
+                  name="logo"
+                  placeholder="Logo Image Link (Optional)"
+                />
+                <h4>Additional Image</h4>
+                <TextArea
+                  value={this.state.brandImages}
+                  // value={this.props.brandImages}
+                  onChange={this.handleInputChange}
+                  name="images"
+                  placeholder="Additional Image Link (Optional)"
+                />
+                <h4>Main Color (HEX Code)</h4>
+                <TextArea
+                  value={this.state.brandMainColor}
+                  // value={this.props.brandMainColor}
+                  onChange={this.handleInputChange}
+                  name="mainColor"
+                  placeholder="Main Color HEX Code (Optional)"
+                />
+                <h4>Supporting Color (HEX Code)</h4>
+                <TextArea
+                  value={this.state.brandSupportingColor}
+                  // value={this.props.brandSupportingColor}
+                  onChange={this.handleInputChange}
+                  name="supportingColor"
+                  placeholder="Supporting Color HEX Code (Optional)"
+                />
+                <button className="btn" value={this.state.id} 
+                // onClick={this.handleFormSubmit}
+                onClick={() => this.handleFormSubmit(this.state.brand._id
+                //   () => this.handleFormSubmit(
+                // this.state.id, 
+                // this.state.brandName,
+                // this.state.brandIndustry,
+                // this.state.brandSlogan,
+                // this.state.brandLogo,
+                // this.state.brandImages,
+                // this.state.brandMainColor,
+                // this.state.brandSupportingColor
+                )}
+                >Save Updates</button>
+              </form>
         </div>
     </div>
     );

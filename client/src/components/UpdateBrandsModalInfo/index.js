@@ -6,9 +6,14 @@ import { TextArea } from "../Form";
 class Brands extends Component {
   state = {
     brands: [],
+    _id: "",
     name: "",
     industry: "",
-    slogan: ""
+    slogan: "",
+    logo: "", 
+    mainColor: "",
+    supportingColor: "",
+    images: "",
   };
 
 //   componentDidMount() {
@@ -55,13 +60,13 @@ class Brands extends Component {
     //   API.updateBrand({
     API.updateBrand(id, 
         {
-        name: this.brandName,
-        industry: this.brandIndustry,
-        slogan: this.brandSlogan,
-        logo: this.brandLogo,
-        mainColor: this.brandMainColor,
-        supportingColor: this.brandSupportingColor,
-        images: this.brandImages
+        name: this.state.brandName,
+        industry: this.state.brandIndustry,
+        slogan: this.state.brandSlogan,
+        logo: this.state.brandLogo,
+        mainColor: this.state.brandMainColor,
+        supportingColor: this.state.brandSupportingColor,
+        images: this.state.brandImages
         }
       )
       .then(res => this.loadBrands(), 
@@ -79,7 +84,7 @@ class Brands extends Component {
               <form>
                 <h4>Name</h4>
                 <TextArea
-                  value={this.brandName}
+                  value={this.state.brandName}
                   // value={this.props.brandName}
                   onChange={this.handleInputChange}
                   name="name"
@@ -87,7 +92,7 @@ class Brands extends Component {
                 />
                 <h4>Industry</h4>
                 <TextArea
-                  value={this.brandIndustry}
+                  value={this.state.brandIndustry}
                   // value={this.props.brandIndustry}
                   onChange={this.handleInputChange}
                   name="industry"
@@ -95,7 +100,7 @@ class Brands extends Component {
                 />
                 <h4>Slogan</h4>
                 <TextArea
-                  value={this.brandSlogan}
+                  value={this.state.brandSlogan}
                   // value={this.props.brandSlogan}
                   onChange={this.handleInputChange}
                   name="slogan"
@@ -103,7 +108,7 @@ class Brands extends Component {
                 />
                 <h4>Logo</h4>
                 <TextArea
-                  value={this.brandLogo}
+                  value={this.state.brandLogo}
                   // value={this.props.brandLogo}
                   onChange={this.handleInputChange}
                   name="logo"
@@ -111,7 +116,7 @@ class Brands extends Component {
                 />
                 <h4>Additional Image</h4>
                 <TextArea
-                  value={this.brandImages}
+                  value={this.state.brandImages}
                   // value={this.props.brandImages}
                   onChange={this.handleInputChange}
                   name="images"
@@ -119,7 +124,7 @@ class Brands extends Component {
                 />
                 <h4>Main Color (HEX Code)</h4>
                 <TextArea
-                  value={this.brandMainColor}
+                  value={this.state.brandMainColor}
                   // value={this.props.brandMainColor}
                   onChange={this.handleInputChange}
                   name="mainColor"
@@ -127,7 +132,7 @@ class Brands extends Component {
                 />
                 <h4>Supporting Color (HEX Code)</h4>
                 <TextArea
-                  value={this.brandSupportingColor}
+                  value={this.state.brandSupportingColor}
                   // value={this.props.brandSupportingColor}
                   onChange={this.handleInputChange}
                   name="supportingColor"
@@ -136,14 +141,14 @@ class Brands extends Component {
                 <button className="btn" value={this.props.id} 
                 // onClick={this.handleFormSubmit}
                 onClick={() => this.handleFormSubmit(
-                this.props.id, 
-                this.brandName,
-                this.brandIndustry,
-                this.brandSlogan,
-                this.brandLogo,
-                this.brandImages,
-                this.brandMainColor,
-                this.brandSupportingColor
+                this.state.id, 
+                // this.state.brandName,
+                // this.state.brandIndustry,
+                // this.state.brandSlogan,
+                // this.state.brandLogo,
+                // this.state.brandImages,
+                // this.state.brandMainColor,
+                // this.state.brandSupportingColor
                 )}
                 >Save Updates</button>
               </form>
