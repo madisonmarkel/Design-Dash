@@ -6,13 +6,13 @@ import { TextArea } from "../Form";
 class Brands extends Component {
   state = {
     brand: [],
-    // name: this.props.name,
-    // industry: this.props.industry,
-    // slogan: this.props.slogan,
-    // logo: this.props.logo, 
-    // mainColor: this.props.mainColor,
-    // supportingColor: this.props.supportingColor,
-    // images: this.props.images,
+    name: "",
+    industry:"",
+    slogan: "",
+    logo: "",
+    mainColor: "",
+    supportingColor: "",
+    images: "",
     // brands: [],
     // _id: "",
     // name: "",
@@ -55,12 +55,12 @@ class Brands extends Component {
   };
 
 
-  handleFormSubmit = id => {
+  handleFormSubmit = (id) => {
     // event.preventDefault();
     //   API.updateBrand({
     API.updateBrand(id, 
         {
-        name: this.state.brand.name,
+        name: this.state.brand.industry,
         industry: this.state.brand.industry,
         slogan: this.state.brand.slogan,
         logo: this.state.brand.logo,
@@ -69,7 +69,7 @@ class Brands extends Component {
         images: this.state.brand.images
         }
       )
-      .then(res => this.loadBrands(), 
+      .then(console.log(this.name), res => this.loadBrands(), 
             //this.props.history.push('/brands')
             )
         .catch(err => console.log(err));
@@ -139,7 +139,6 @@ class Brands extends Component {
                   placeholder="Supporting Color HEX Code (Optional)"
                 />
                 <button className="btn" value={this.props.id} 
-                // onClick={this.handleFormSubmit}
                 onClick={() => this.handleFormSubmit(
                 this.props.id, 
                 // this.state.brand.name,

@@ -7,6 +7,7 @@ const Navigation = props => (
         <h2 className="navigation_h2"><Link to="/brands">Your Brands</Link></h2>
         <h2 className="navigation_h2"><Link to="/photo-search">Search for Photos</Link></h2>
         <h2 className="navigation_h2"><Link to="/color-search">Search for Colors</Link></h2>
+        <h2 className="navigation_h2"><Link to="/photo-storage">Photo Storage</Link></h2>
     </div>
 );
 //onClick={() => props.handleClick(props.id)}

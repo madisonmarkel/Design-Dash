@@ -37,20 +37,6 @@ class PixabaySearch extends Component {
             })
             .catch(err => console.log(err));
         };
-
-        copyToClipboard = (e) => {
-          console.log(this.value);
-          // this.webformatURL.select();
-          // document.execCommand('copy');
-
-          var copyText = "Test";
-          copyText.select();
-          document.execCommand("copy");
-          alert("Copied the text: " + copyText.value);
-          // This is just personal preference.
-          // I prefer to not show the the whole text area selected.
-          
-          };
         
 
       render() {
@@ -74,7 +60,7 @@ class PixabaySearch extends Component {
 
                 <div className="all_pixabay_results">
                     {this.state.pictures.map(picture => (
-                      <div ref={picture.webformatURL}>
+                      // <div ref={picture.webformatURL}>
                         <a href={picture.webformatURL} key={picture.id}>
                           <img 
                           src={picture.previewURL} 
@@ -85,8 +71,7 @@ class PixabaySearch extends Component {
                           // ref={(copyinfo) => this.copyInfo = copyinfo}
                           className="pixabay_results"/>
                         </a>
-                        <button className="btn" onClick={this.copyToClipboard} value={picture.webformatURL}>Copy Image Link to Clipboard</button>
-                      </div>
+                      // </div>
                     ))}
                 </div>
             </div>

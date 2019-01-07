@@ -7,6 +7,13 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 
+//AWS
+const AWS = require('aws-sdk');
+const fs = require('fs');
+const fileType = require('file-type');
+const bluebird = require('bluebird');
+const multiparty = require('multiparty');
+
 // //OKTA USER AUTH
 const OktaJwtVerifier = require('@okta/jwt-verifier');
 var cors = require('cors');

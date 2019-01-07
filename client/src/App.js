@@ -7,6 +7,7 @@ import IndividualBrands from "./pages/IndividualBrands";
 import PixabayPage from "./pages/Pixabay";
 import ColorPage from "./pages/Color";
 import Login from "./pages/Login";
+import AWSPhotoStorage from "./pages/AWSPhotoStorage";
 import "./App.css";
 import { Security, ImplicitCallback } from '@okta/okta-react';
 
@@ -55,6 +56,7 @@ const config = {
            <Route exact path="/brands/:id" component={IndividualBrands} />
            <Route exact path="/photo-search" component={PixabayPage} />
            <Route exact path="/color-search" component={ColorPage} />
+           <Route exact path="/photo-storage" component={AWSPhotoStorage} />
          </Switch>
          </Security>
        </div>

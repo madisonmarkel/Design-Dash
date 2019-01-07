@@ -56,7 +56,8 @@ class UpdateModal extends React.Component {
               <Modal.Title>Update Brand</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <UpdateBrandsModalInfo key={() => this.passID(this.props.brandID)} 
+              <UpdateBrandsModalInfo 
+                key={() => this.passID(this.props.brandID)} 
                 id= {this.props.brandID}
                 brandName= {this.props.brandName}
                 brandIndustry= {this.props.brandIndustry}
@@ -64,7 +65,8 @@ class UpdateModal extends React.Component {
                 brandLogo= {this.props.brandLogo}
                 brandImages= {this.props.brandImages}
                 brandMainColor= {this.props.brandMainColor}
-                brandSupportingColor= {this.props.brandSupportingColor} />
+                brandSupportingColor= {this.props.brandSupportingColor} 
+                />
             </Modal.Body>
             <Modal.Footer>
               <button className="btn" onClick={this.handleClose}>Close</button>

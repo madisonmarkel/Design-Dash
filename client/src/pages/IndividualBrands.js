@@ -91,7 +91,6 @@ class IndividualBrands extends Component {
                 brandMainColor= {this.state.brand.mainColor}
                 brandSupportingColor= {this.state.brand.supportingColor}
               />
-              {/* <button className="btn" onClick={() => this.updateBrand(this.state.brand._id)}>Update</button> */}
               <button className="deleteButton" onClick={() => this.deleteBrand(this.state.brand._id)}>Delete</button>
               <br/>
             <Link to="/brands">← Your Brands</Link>
