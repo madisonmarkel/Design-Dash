@@ -22,9 +22,10 @@ class AWSPhotoStorage extends Component {
         </header>
         <div className="main_app">
             <Navigation/>
-
+          <div className="searches">
             <FileUpload/>
             <FileDownload />
+          </div>
           </div>
       </div>
     );

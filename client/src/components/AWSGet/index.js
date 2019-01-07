@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 class FileDownload extends Component {
   constructor () {
@@ -10,23 +10,43 @@ class FileDownload extends Component {
   }
 
   componentDidMount() {
-        var AWS = require('aws-sdk');
-        AWS.config.update(
-          {
-            accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
-            secretAccessKey: "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",
-            region: 'us-west-2'
-          }
-        );
-        var s3 = new AWS.S3();
-        var params = {
-            Bucket: "designdash", 
-            Key: "bucketFolder/1546821014297-lg.png"
-        };
-        s3.getObject(params, function(err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
-            else     console.log(data); 
-        });
+    var AWS = require('aws-sdk');
+    AWS.config.update(
+        {
+        accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
+        secretAccessKey: "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",
+        region: 'us-west-2'
+        }
+    );
+    var s3 = new AWS.S3();
+    var params = {
+        Bucket: "designdash", 
+        MaxKeys: 10000,
+       };
+       s3.listObjects(params, function(err, data) {
+         if (err) console.log(err, err.stack); // an error occurred
+         else {
+            console.log(data); 
+            // this.setState({file: data.Contents})
+         }
+    });
+        // var AWS = require('aws-sdk');
+        // AWS.config.update(
+        //   {
+        //     accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
+        //     secretAccessKey: "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",
+        //     region: 'us-west-2'
+        //   }
+        // );
+        // var s3 = new AWS.S3();
+        // var params = {
+        //     Bucket: "designdash", 
+        //     Key: "bucketFolder/pup.png"
+        // };
+        // s3.getObject(params, function(err, data) {
+        //     if (err) console.log(err, err.stack); // an error occurred
+        //     else     console.log(data); 
+        // });
 //========================= attempt to send to backside
     // axios.get(`/test-show`, {
     //     headers: {
