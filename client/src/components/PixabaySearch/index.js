@@ -61,7 +61,7 @@ class PixabaySearch extends Component {
                 <div className="all_pixabay_results">
                     {this.state.pictures.map(picture => (
                       // <div ref={picture.webformatURL}>
-                        <a href={picture.webformatURL} key={picture.id}>
+                        <a href={picture.webformatURL} key={picture.id} target="_blank" rel="noopener noreferrer">
                           <img 
                           src={picture.previewURL} 
                           alt={picture.tags} 
