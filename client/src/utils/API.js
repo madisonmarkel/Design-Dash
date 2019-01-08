@@ -30,4 +30,7 @@ export default {
     console.log("SRC/UTILS/API GETPIXABAYIMAGES FUNCTION ROUTE");
     return axios.get("/api/pixabay", { params: { q: query } });
   },
+  getAWSFiles: function() {
+    return axios.get("api/aws")
+  }
 };

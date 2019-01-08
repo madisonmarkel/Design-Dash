@@ -1,35 +1,54 @@
 import React, { Component } from 'react';
+import API from "../../utils/API";
 // import axios from 'axios';
 
 class FileDownload extends Component {
-  constructor () {
-    super();
-    this.state = {
-      file: null
+    state = {
+        file: [],
+        isLoading: false
     };
-  }
 
-  componentDidMount() {
-    var AWS = require('aws-sdk');
-    AWS.config.update(
-        {
-        accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
-        secretAccessKey: "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",
-        region: 'us-west-2'
-        }
-    );
-    var s3 = new AWS.S3();
-    var params = {
-        Bucket: "designdash", 
-        MaxKeys: 10000,
-       };
-       s3.listObjects(params, function(err, data) {
-         if (err) console.log(err, err.stack); // an error occurred
-         else {
-            console.log(data); 
-            // this.setState({file: data.Contents})
-         }
-    });
+    setThatState = (response) => {
+        console.log(response);
+        // var aws = response.data.contents;
+        // for (var i=0; i>aws.length; i++){
+        //     console.log(aws[i]);
+        // }
+        this.setState({ file: response.data.Contents }, 
+        console.log(response.data.Contents))
+    }
+    componentDidMount() {
+        API.getAWSFiles()
+        // .then(res => {
+        .then(response => {
+            console.log(response.data.Contents);
+            this.setThatState(response);
+            return response;
+        })
+        .catch(err => console.log(err));
+    }
+//   getAWS = () => {
+//     API.getAWSFiles()
+//     // .then(res => {
+//     .then(response => {
+//         console.log(response);
+//         // response.send();
+//         return response;
+//     })
+//         // console.log(res.data); 
+//         // this.setState({ file: res.data })
+//     // })
+//     .catch(err => console.log(err));
+//     }
+
+//     componentDidMount() {
+//         this.setState({ isLoading: true });
+//         this.getAWS()
+//         .then( response => {this.setState({file: response, isLoading: false})
+//         .catch(err => console.log(err));
+//       })
+//     }
+// =============================================================================================
         // var AWS = require('aws-sdk');
         // AWS.config.update(
         //   {
@@ -88,14 +107,15 @@ class FileDownload extends Component {
     //     }
     //   }
     // );
-  }
+//   }
 
   render () {
     return (
     <div className="app">
         <h2>Saved Photos</h2>
         <div className="photo_storage_results">
-            {/* {this.state.file.map(files => (
+            <p id={this.state.file}>Help</p>
+            {this.state.file.map(files => (
                 // <div ref={picture.webformatURL}>
                 <a href={files} key={files}>
                     <img 
@@ -106,7 +126,7 @@ class FileDownload extends Component {
                     value={files} 
                     className="awsFiles"/>
                 </a>
-            ))} */}
+            ))}
         </div>
     </div>
     );
