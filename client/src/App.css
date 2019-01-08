@@ -210,6 +210,11 @@ code {
   .brand_images {
     max-height: 250px;
   }
+  /* AWS SEARCH */
+  .awsFiles {
+    max-width:10em;
+    margin-right:1em;
+  }
 
   /* MODAL */
   /* // Modals

@@ -114,16 +114,15 @@ class FileDownload extends Component {
     <div className="app">
         <h2>Saved Photos</h2>
         <div className="photo_storage_results">
-            <p id={this.state.file}>Help</p>
             {this.state.file.map(files => (
                 // <div ref={picture.webformatURL}>
-                <a href={files} key={files}>
+                <a href={files.Key} key={files.Key}>
                     <img 
-                    src={files} 
-                    alt={files} 
-                    id="awsFile" 
-                    key={files} 
-                    value={files} 
+                    src={"https://designdash.s3.amazonaws.com/"+ files.Key }
+                    alt={files.Key} 
+                    id={files.Key}
+                    key={files.Key} 
+                    value={files.Key} 
                     className="awsFiles"/>
                 </a>
             ))}
