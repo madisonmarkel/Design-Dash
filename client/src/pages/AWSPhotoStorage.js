@@ -8,10 +8,6 @@ import { Link } from "react-router-dom";
 import FileUpload from "../components/AWSUpload"
 import FileDownload from "../components/AWSGet"
 
-//const PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
-
-console.log(process.env.REACT_APP_PIXABAY_API_KEY)
-
 class AWSPhotoStorage extends Component {
 
   render() {

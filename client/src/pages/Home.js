@@ -9,10 +9,6 @@ import { YourBrands, ListItem } from "../components/YourBrands";
 import { Link } from "react-router-dom";
 //import PixabaySearch from "../components/Pixabay";
 
-//const PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
-
-console.log(process.env.REACT_APP_PIXABAY_API_KEY)
-
 class App extends Component {
   state = {
     brands: [],

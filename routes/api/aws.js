@@ -1,22 +1,28 @@
-const axios = require("axios");
+require("dotenv").config();
 const router = require("express").Router();
-    
-const API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
-console.log(API_KEY);
+
+const ACCESS_KEY = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
+const SECRET_KEY = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
+const BUCKET = process.env.REACT_APP_S3_BUCKET
     
     //SHOULD MATCH WITH /aws IN ROUTES / API /INDEX.js
     router.get("/", (req, res) => {
         var AWS = require('aws-sdk');
         AWS.config.update(
             {
-            accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
-            secretAccessKey: "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",
-            region: 'us-west-2'
+                accessKeyId: ACCESS_KEY,
+                secretAccessKey: SECRET_KEY,
+                region: 'us-west-2'
             }
+            // {
+            // accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
+            // secretAccessKey: "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",
+            // region: 'us-west-2'
+            // }
         );
         var s3 = new AWS.S3();
         var params = {
-            Bucket: "designdash", 
+            Bucket: BUCKET, 
             MaxKeys: 10000,
         };
         s3.listObjects(params, function(err, data) {
