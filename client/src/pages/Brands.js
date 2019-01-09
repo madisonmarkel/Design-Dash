@@ -6,10 +6,6 @@ import { YourBrands, ListItem } from "../components/YourBrands";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 
-//const PIXABAY_API_KEY = process.env.REACT_APP_PIXABAY_API_KEY;
-
-console.log(process.env.REACT_APP_PIXABAY_API_KEY)
-
 class Brands extends Component {
   state = {
     brands: [],
