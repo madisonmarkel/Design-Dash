@@ -12,32 +12,37 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
-// export default withAuth(
+export default withAuth(
   class Login extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { authenticated: null };
-  //   this.checkAuthentication = this.checkAuthentication.bind(this);
-  //   this.checkAuthentication();
-  //   this.login = this.login.bind(this);
-  //   this.logout = this.logout.bind(this);
-  // }
-  state = {
-    users: [],
-    email: "",
-    password: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = { 
+      authenticated: null,
+      users: [],
+      email: "",
+      password: "",
+    };
+    this.checkAuthentication = this.checkAuthentication.bind(this);
+    this.checkAuthentication();
+    this.login = this.login.bind(this);
+    // this.logout = this.logout.bind(this);
+  }
+  // state = {
+  //   users: [],
+  //   email: "",
+  //   password: "",
+  // };
 
-  // async checkAuthentication() {
-  //   const authenticated = await this.props.auth.isAuthenticated();
-  //   if (authenticated !== this.state.authenticated) {
-  //     this.setState({ authenticated });
-  //   }
-  // }
+  async checkAuthentication() {
+    const authenticated = await this.props.auth.isAuthenticated();
+    if (authenticated !== this.state.authenticated) {
+      this.setState({ authenticated });
+    }
+  }
 
-  // componentDidUpdate() {
-  //   this.checkAuthentication();
-  // }
+  componentDidUpdate() {
+    this.checkAuthentication();
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -70,13 +75,13 @@ import { Input, TextArea, FormBtn } from "../components/Form";
   //   this.props.auth.logout('/');
   // }
 
-//   render() {
-//     if (this.state.authenticated === null) return null;
-//     return this.state.authenticated ?
-//       <button onClick={this.logout}>Logout</button> :
-//       <button onClick={this.login}>Login</button>;
-//   }
-// });
+  //   render() {
+  //     if (this.state.authenticated === null) return null;
+  //     return this.state.authenticated ?
+  //       <button onClick={this.logout}>Logout</button> :
+  //       <button onClick={this.login}>Login</button>;
+  //   }
+  // });
 
   render() {
     return (
@@ -140,7 +145,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
                      className="btn"
                     //  disabled={!(this.state.email && this.state.password)}
                      onClick={this.login}>
-                     Sign Up
+                     Log In
                      </FormBtn>
                     {/* <button className="btn"><Link to="/home">Login</Link></button> */}
                 </form>
@@ -150,8 +155,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
         </div>
       </div>
      );
-  // }
-}
-}
+  }
+});
 // )
-export default Login;
+// export default Login;

@@ -78,7 +78,7 @@ app.get('/secure', authenticationRequired, (req, res) => {
  */
 app.get('/api/messages', authenticationRequired, (req, res) => {
   res.json([{
-    message: 'Hello, word!'
+    message: 'Hello, world!'
   }]);
 });
 
@@ -129,30 +129,6 @@ app.post('/test-upload', (request, response) => {
       }
     });
 });
-
-// // NEED TO DEFINE AWS GET POST FOR AWSGET INDEX.JS FILE FOR BACKEND INSTEAD OF FRONTEND
-// app.get('/test-show', (request, response) => {
-//   AWS.config.update(
-//       {
-//       accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
-//       secretAccessKey: "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",
-//       // region: 'us-west-2'
-//     }
-//   );
-//   var s3 = new AWS.S3();
-//   s3.getObject(
-//     { Bucket: "designdash", Key: "bucketFolder/1546821014297-lg.png" },
-//     function (error, data) {
-//       if (error != null) {
-//         alert("Failed to retrieve an object: " + error);
-//       } else {
-//       //   setState({file: data.ContentLength})
-//         alert("Loaded " + data.ContentLength + " bytes");
-//         // do something with data.Body
-//       }
-//     }
-//   );
-// });
 
 //=================================================================================================================
 

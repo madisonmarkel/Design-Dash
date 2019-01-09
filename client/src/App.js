@@ -18,28 +18,6 @@ const config = {
   API_KEY: process.env.REACT_APP_PIXABAY_API_KEY,
 }
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <Router>
-//         <Security issuer={config.issuer}
-//                   client_id={config.client_id}
-//                   redirect_uri={config.redirect_uri}
-//         >
-//           <Route path='/' exact={true} component={Home}/>
-//           <Route path='/implicit/callback' component={ImplicitCallback}/>
-//           <Route exact path="/" component={Login} />
-//           <Route exact path="/home" component={Home} />
-//           <Route exact path="/brands" component={Brands} />
-//           <Route exact path="/brands/:id" component={IndividualBrands} />
-//           <Route exact path="/photo-search" component={PixabayPage} />
-//           <Route exact path="/color-search" component={ColorPage} />
-//         </Security>
-//       </Router>
-//     );
-//   }
-// }
-
  function App() {
    return (
      <Router>
