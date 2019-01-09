@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
 import API from "../utils/API";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import UpdateModal from "../components/Modal";
 import '../App.css';
+import { TextArea } from "../components/Form";
 
 class IndividualBrands extends Component {
   state = {
@@ -17,6 +18,27 @@ class IndividualBrands extends Component {
       .then(res => this.setState({ brand: res.data }))
       .catch(err => console.log(err));
   }
+
+  passID() {
+    this.setState({
+        brandID: !this.state.brand._id,
+        brandName: !this.state.brand.name,
+        brandIndustry: !this.state.brand.industry,
+        brandSlogan: !this.state.brand.slogan,
+        brandLogo: !this.state.brand.logo,
+        brandImages: !this.state.brand.images,
+        brandMainColor: !this.state.brand.mainColor,
+        brandSupportingColor: !this.state.brand.supportingColor,
+    });
+  };
+
+    loadBrands = () => {
+      API.getBrands()
+        .then(res =>
+          this.setState({ brands: res.data, name: "", industry: "", slogan: "", logo: "", mainColor: "", supportingColor: "", images: "", })
+        )
+        .catch(err => console.log(err));
+    };
 
   // Deletes a book from the database with a given id, then reloads books from the db
   deleteBrand = id => {
@@ -49,7 +71,7 @@ class IndividualBrands extends Component {
               <h2>Logo:</h2>
                 <img className="brand_images" alt="Company logo" src={this.state.brand.logo}/>
               <h2>Additional Image:</h2>
-                <img className="brand_images" alt="Company logo" src={this.state.brand.images}/>
+                <img className="brand_images" alt="Additional Photos" src={this.state.brand.images}/>
               <h2>Main Color:</h2>
                 <p>{this.state.brand.mainColor}</p>
                 <div style={{ background: this.state.brand.mainColor, padding: 10 }}/>
@@ -59,7 +81,16 @@ class IndividualBrands extends Component {
               <p>
                 Date Created: {this.state.brand.date}
               </p>
-              <button className="btn" onClick={() => this.updateBrand(this.state.brand._id)}>Update</button>
+              <UpdateModal key={() => this.passID(this.state.brand._id)} 
+                brandID= {this.state.brand._id}
+                brandName= {this.state.brand.name}
+                brandIndustry= {this.state.brand.industry}
+                brandSlogan= {this.state.brand.slogan}
+                brandLogo= {this.state.brand.logo}
+                brandImages= {this.state.brand.images}
+                brandMainColor= {this.state.brand.mainColor}
+                brandSupportingColor= {this.state.brand.supportingColor}
+              />
               <button className="deleteButton" onClick={() => this.deleteBrand(this.state.brand._id)}>Delete</button>
               <br/>
             <Link to="/brands">← Your Brands</Link>

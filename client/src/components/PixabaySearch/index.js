@@ -29,7 +29,6 @@ class PixabaySearch extends Component {
           });
         };
         handleFormSubmit = event => {
-          // When the form is submitted, prevent its default behavior, get recipes update the recipes state
           event.preventDefault();
           API.getPixabayImages(this.state.pixabaySearch)
             .then(res => {
@@ -38,6 +37,7 @@ class PixabaySearch extends Component {
             })
             .catch(err => console.log(err));
         };
+        
 
       render() {
         //const { pixabaySearch } = this.state;
@@ -60,14 +60,18 @@ class PixabaySearch extends Component {
 
                 <div className="all_pixabay_results">
                     {this.state.pictures.map(picture => (
-                        <a href={picture.webformatURL} key={picture.id}>
+                      // <div ref={picture.webformatURL}>
+                        <a href={picture.webformatURL} key={picture.id} target="_blank" rel="noopener noreferrer">
                           <img 
                           src={picture.previewURL} 
                           alt={picture.tags} 
-                          id={picture.id} 
+                          id="copyPhoto" 
                           key={picture.id} 
+                          value={picture.webformatURL} 
+                          // ref={(copyinfo) => this.copyInfo = copyinfo}
                           className="pixabay_results"/>
                         </a>
+                      // </div>
                     ))}
                 </div>
             </div>
