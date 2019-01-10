@@ -17,7 +17,7 @@ const multiparty = require('multiparty');
 let cors = require('cors');
 
 // //OKTA USER AUTH
-const OktaJwtVerifier = require('@okta/jwt-verifier');
+// const OktaJwtVerifier = require('@okta/jwt-verifier');
 
 // MIDDLEWARE
 app.use(bodyParser.json());
@@ -26,61 +26,61 @@ app.use(cors());
 
 //=================================================================================================================
 
-// // OKTA USER AUTH
-const oktaJwtVerifier = new OktaJwtVerifier({
-  issuer: 'https://dev-687371.oktapreview.com',
-  clientId: '0oainhuo94dnScBmE0h7',
-  assertClaims: {
-    aud: 'api://default',
-  },
-});
-/**
- * A simple middleware that asserts valid access tokens and sends 401 responses
- * if the token is not present or fails validation.  If the token is valid its
- * contents are attached to req.jwt
- */
-function authenticationRequired(req, res, next) {
-  const authHeader = req.headers.authorization || '';
-  const match = authHeader.match(/Bearer (.+)/);
+// // // OKTA USER AUTH
+// const oktaJwtVerifier = new OktaJwtVerifier({
+//   issuer: 'https://dev-687371.oktapreview.com',
+//   clientId: '0oainhuo94dnScBmE0h7',
+//   assertClaims: {
+//     aud: 'api://default',
+//   },
+// });
+// /**
+//  * A simple middleware that asserts valid access tokens and sends 401 responses
+//  * if the token is not present or fails validation.  If the token is valid its
+//  * contents are attached to req.jwt
+//  */
+// function authenticationRequired(req, res, next) {
+//   const authHeader = req.headers.authorization || '';
+//   const match = authHeader.match(/Bearer (.+)/);
 
-  if (!match) {
-    return res.status(401).end();
-  }
+//   if (!match) {
+//     return res.status(401).end();
+//   }
 
-  const accessToken = match[1];
+//   const accessToken = match[1];
 
-  return oktaJwtVerifier.verifyAccessToken(accessToken)
-    .then((jwt) => {
-      req.jwt = jwt;
-      next();
-    })
-    .catch((err) => {
-      res.status(401).send(err.message);
-    });
-}
-/**
- * For local testing only!  Enables CORS for all domains
- */
-// app.use(cors());
+//   return oktaJwtVerifier.verifyAccessToken(accessToken)
+//     .then((jwt) => {
+//       req.jwt = jwt;
+//       next();
+//     })
+//     .catch((err) => {
+//       res.status(401).send(err.message);
+//     });
+// }
+// /**
+//  * For local testing only!  Enables CORS for all domains
+//  */
+// // app.use(cors());
 
-/**
- * An example route that requires a valid access token for authentication, it
- * will echo the contents of the access token if the middleware successfully
- * validated the token.
- */
-app.get('/secure', authenticationRequired, (req, res) => {
-  res.json(req.jwt);
-});
+// /**
+//  * An example route that requires a valid access token for authentication, it
+//  * will echo the contents of the access token if the middleware successfully
+//  * validated the token.
+//  */
+// app.get('/secure', authenticationRequired, (req, res) => {
+//   res.json(req.jwt);
+// });
 
-/**
- * Another example route that requires a valid access token for authentication, and
- * print some messages for the user if they are authenticated
- */
-app.get('/api/messages', authenticationRequired, (req, res) => {
-  res.json([{
-    message: 'Hello, world!'
-  }]);
-});
+// /**
+//  * Another example route that requires a valid access token for authentication, and
+//  * print some messages for the user if they are authenticated
+//  */
+// app.get('/api/messages', authenticationRequired, (req, res) => {
+//   res.json([{
+//     message: 'Hello, world!'
+//   }]);
+// });
 
 //=================================================================================================================
 // ============================================ AWS
