@@ -15,6 +15,7 @@ const bluebird = require('bluebird');
 const multiparty = require('multiparty');
 // const s3 = new aws.S3();
 let cors = require('cors');
+require("dotenv").config();
 
 // //OKTA USER AUTH
 // const OktaJwtVerifier = require('@okta/jwt-verifier');
@@ -26,70 +27,12 @@ app.use(cors());
 
 //=================================================================================================================
 
-// // // OKTA USER AUTH
-// const oktaJwtVerifier = new OktaJwtVerifier({
-//   issuer: 'https://dev-687371.oktapreview.com',
-//   clientId: '0oainhuo94dnScBmE0h7',
-//   assertClaims: {
-//     aud: 'api://default',
-//   },
-// });
-// /**
-//  * A simple middleware that asserts valid access tokens and sends 401 responses
-//  * if the token is not present or fails validation.  If the token is valid its
-//  * contents are attached to req.jwt
-//  */
-// function authenticationRequired(req, res, next) {
-//   const authHeader = req.headers.authorization || '';
-//   const match = authHeader.match(/Bearer (.+)/);
-
-//   if (!match) {
-//     return res.status(401).end();
-//   }
-
-//   const accessToken = match[1];
-
-//   return oktaJwtVerifier.verifyAccessToken(accessToken)
-//     .then((jwt) => {
-//       req.jwt = jwt;
-//       next();
-//     })
-//     .catch((err) => {
-//       res.status(401).send(err.message);
-//     });
-// }
-// /**
-//  * For local testing only!  Enables CORS for all domains
-//  */
-// // app.use(cors());
-
-// /**
-//  * An example route that requires a valid access token for authentication, it
-//  * will echo the contents of the access token if the middleware successfully
-//  * validated the token.
-//  */
-// app.get('/secure', authenticationRequired, (req, res) => {
-//   res.json(req.jwt);
-// });
-
-// /**
-//  * Another example route that requires a valid access token for authentication, and
-//  * print some messages for the user if they are authenticated
-//  */
-// app.get('/api/messages', authenticationRequired, (req, res) => {
-//   res.json([{
-//     message: 'Hello, world!'
-//   }]);
-// });
-
 //=================================================================================================================
 // ============================================ AWS
 // configure the keys for accessing AWS
 AWS.config.update({
-  accessKeyId: "AKIAINNLDQMCCB2AKJSQ",
-  secretAccessKey: "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",
-  // accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-  // secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
+  accessKeyId: REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: REACT_APP_AWS_SECRET_ACCESS_KEY
 });
 
 // configure AWS to work with promises
