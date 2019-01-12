@@ -5,31 +5,17 @@ import { TextArea } from "../Form";
 
 class Brands extends Component {
   state = {
-    brand: [],
-    name: "",
-    industry:"",
-    slogan: "",
-    logo: "",
-    mainColor: "",
-    supportingColor: "",
-    images: "",
-    // brands: [],
-    // _id: "",
-    // name: "",
-    // industry: "",
-    // slogan: "",
-    // logo: "", 
-    // mainColor: "",
-    // supportingColor: "",
-    // images: "",
+    brand: {}
   };
   componentDidMount() {
     API.getBrand(this.props.id, this.props.name, this.props.industry, this.props.slogan, this.props.logo, this.props.mainColor, this.props.supportingColor,this.props.images)
       .then(res => this.setState({ brand: res.data }))
       .catch(err => console.log(err));
+      console.log(this.state);
   }
 
   loadBrands = id => {
+    console.log(this.state);
     API.getBrands(id)
       .then(res =>
         this.setState({ brands: res.data, name: "", industry: "", slogan: "" })
@@ -51,16 +37,34 @@ class Brands extends Component {
   //         .catch(err => console.log(err));
   //     }
   handleTextChange = event => {
-    this.setState({ brand: event.target.value });
+    // let value = event.target.value;
+    const name = event.target.name
+    this.setState({brand: { [name]: event.target.value }});
+    // this.setState({
+    //   [name]: value
+    // });
   };
 
 
   handleFormSubmit = (id) => {
     // event.preventDefault();
     //   API.updateBrand({
+      console.log(this.state.brand);
+      let newBrand = {
+        name: this.state.brand.name,
+        industry: this.state.brand.industry,
+        slogan: this.state.brand.slogan,
+        logo: this.state.brand.logo,
+        mainColor: this.state.brand.mainColor,
+        supportingColor: this.state.brand.supportingColor,
+        images: this.state.brand.images
+      }
+      console.log(newBrand);
+      console.log(id);
+
     API.updateBrand(id, 
         {
-        name: this.state.brand.industry,
+        name: this.state.brand.name,
         industry: this.state.brand.industry,
         slogan: this.state.brand.slogan,
         logo: this.state.brand.logo,
@@ -71,12 +75,13 @@ class Brands extends Component {
       )
       .then(console.log(this.name), res => this.loadBrands(), 
             //this.props.history.push('/brands')
-            )
+)
         .catch(err => console.log(err));
     }
   
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
       <h2>Edit {this.state.brand.name}</h2>

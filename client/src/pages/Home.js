@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 
 class App extends Component {
   state = {
+    currentUserName: '',
+    currentUserEmail: '',
     brands: [],
     name: "",
     industry: "",
@@ -22,6 +24,11 @@ class App extends Component {
   };
 
   componentDidMount() {
+    const idToken = JSON.parse(localStorage.getItem('okta-token-storage'));
+    this.setState({
+      currentUserEmail: idToken.idToken.claims.email,
+      currentUserName: idToken.idToken.claims.name
+    });
     this.loadBrands();
   }
 
@@ -93,6 +100,7 @@ class App extends Component {
   // };
 
   render() {
+    const { currentUserEmail, currentUserName } = this.state;
     return (
       <div className="App">
         <header className="App-header">

@@ -21,19 +21,19 @@ class UpdateModal extends React.Component {
         show: false
       };
     }
-    passID() {
-      console.log(!this.state.brand._id)
-      this.setState({
-          brandID: !this.state.brand._id,
-          brandName: !this.state.brand.name,
-          brandIndustry: !this.state.brand.industry,
-          brandSlogan: !this.state.brand.slogan,
-          brandLogo: !this.state.brand.logo,
-          brandImages: !this.state.brand.images,
-          brandMainColor: !this.state.brand.mainColor,
-          brandSupportingColor: !this.state.brand.supportingColor,
-      });
-    };
+    // passID() {
+    //   console.log(!this.state.brand._id)
+    //   this.setState({
+    //       brandID: !this.state.brand._id,
+    //       brandName: !this.state.brand.name,
+    //       brandIndustry: !this.state.brand.industry,
+    //       brandSlogan: !this.state.brand.slogan,
+    //       brandLogo: !this.state.brand.logo,
+    //       brandImages: !this.state.brand.images,
+    //       brandMainColor: !this.state.brand.mainColor,
+    //       brandSupportingColor: !this.state.brand.supportingColor,
+    //   });
+    // };
   
     handleClose() {
       this.setState({ show: false });
@@ -44,7 +44,7 @@ class UpdateModal extends React.Component {
     }
   
     render() {
-  
+      console.log(this.state);
       return (
         <div>
           <button className="btn" onClick={this.handleShow}>
