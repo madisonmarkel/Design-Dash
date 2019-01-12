@@ -24,7 +24,7 @@ code {
 
 .btn {
   padding:.2em 1em;
-  margin: 1em 1em 1em 0;
+  margin: 1em 0 1em 0;
   font-size:1em;
   border-radius: .2em;
   background: #f17058;
@@ -45,8 +45,11 @@ code {
   .info{
     margin: auto;
     width: 50%;
-    padding: 2em .3em;
+    padding: 4em .3em;
     color: #fff;
+  }
+  .logindiv {
+    display:inline-block
   }
   .btn a {
     color:#fff;
@@ -104,11 +107,43 @@ code {
     font-size: calc(10px + 2vmin);
     color: white;
     min-height: 50%;
-    padding-bottom: 9px;
+    padding:.6em 0;
   }
   .App-header h1 {
+    text-align:right;
+    margin:.2em 0;
+  }
+  .floatright {
     float:right;
-    padding:0 1em;
+  }
+  .tracking-in-expand {
+    -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+            animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    padding: 0 3em;
+  }
+  @-webkit-keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes tracking-in-expand {
+    0% {
+      letter-spacing: -0.5em;
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 /* MAIN APP CONTAINER */
   .main_app {
@@ -140,6 +175,9 @@ code {
     border-radius: .2em;
     box-shadow: 1px 1px 4px #2e3648;
   }
+  .form-control {
+    width:100%;
+  }
 
 /* NAVIGATION */
 .navigation {
@@ -148,34 +186,6 @@ code {
   padding: 1em;
   margin-right: 3em;
   height:200vh;
-}
-.tracking-in-expand {
-	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-}
-@-webkit-keyframes tracking-in-expand {
-  0% {
-    letter-spacing: -0.5em;
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes tracking-in-expand {
-  0% {
-    letter-spacing: -0.5em;
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 
@@ -220,11 +230,6 @@ code {
   /* // Modals
 // --------------------------------------------------
 
-// .modal-open      - body class for killing the scroll
-// .modal           - container to scroll within
-// .modal-dialog    - positioning shell for the actual modal
-// .modal-content   - actual modal w/ bg and corners and shit
-
 // Kill the scroll on the body */
 .modal-open {
   overflow: hidden;
@@ -241,17 +246,7 @@ code {
   left: 0;
   z-index: 1;
   -webkit-overflow-scrolling: touch;
-
-  /* // Prevent Chrome on Windows from adding a focus outline. For details, see
-  // https://github.com/twbs/bootstrap/pull/10951. */
   outline: 0;
-
-  /* // When fading in the modal, animate it to slide down */
-  /* &.fade .modal-dialog {
-    .translate(0, -25%);
-    .transition-transform(~"0.3s ease-out");
-  }
-  &.in .modal-dialog { .translate(0, 0) } */
 }
 .modal-open .modal {
   overflow-x: hidden;
@@ -287,9 +282,6 @@ code {
   margin:0 auto;
   z-index: 1;
   background-color: rgba(0,0,0,.5);
-  /* // Fade for backdrop */
-  /* &.fade { .opacity(0); }
-  &.in { .opacity(@modal-backdrop-opacity); } */
 }
 
 /* // Modal header
@@ -322,22 +314,6 @@ code {
   padding: 1em;
   text-align: right;
   border-top: 1px solid #eee;
-  /* &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons */
-
-  /* // Properly space out buttons */
-  /* .btn + .btn {
-    margin-left: 5px;
-    margin-bottom: 0; 
-    /* // account for input[type="submit"] which gets the bottom margin like all other inputs */
-  /* } */
-  /* // but override that for button groups */
-  /* .btn-group .btn + .btn {
-    margin-left: -1px;
-  }
-  /* // and override it for block buttons as well */
-  /* .btn-block + .btn-block {
-    margin-left: 0;
-  } */
 }
 
 /* // Measure scrollbar width for padding body during modal show/hide */
@@ -348,22 +324,16 @@ code {
   height: 50px;
   overflow: scroll;
 }
-
-/* // Scale up the modal */
-/* @media (min-width: @screen-sm-min) {
-  // Automatically set modal's width for larger viewports
-  .modal-dialog {
-    width: @modal-md;
-    margin: 30px auto;
-  }
-  .modal-content {
-    .box-shadow(0 5px 15px rgba(0,0,0,.5));
-  }
-
-  // Modal sizes
-  .modal-sm { width: @modal-sm; }
+/*OKTA LOG IN */
+#okta-sign-in.auth-container .okta-sign-in-header {
+  border-bottom: #2e3648;
+  background: #2e3648;
 }
-
-@media (min-width: @screen-md-min) {
-  .modal-lg { width: @modal-lg; }
-} */
+#okta-sign-in.auth-container.main-container {
+  background-attachment: #eee;
+}
+#okta-sign-in.auth-container .button-primary {
+  background:#f17058;
+  background-color:#f17058;
+  border:none;
+}

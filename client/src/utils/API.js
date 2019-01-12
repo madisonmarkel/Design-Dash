@@ -11,6 +11,8 @@ export default {
   },
   // Updates the brand with the given id
   updateBrand: function(id, body) {
+    console.log("id", id);
+    console.log("body ", body)
     return axios.put("/api/brands/" + id, body)
     // return axios.put("/api/brands/" + id + "?name=" + brandData.name + "&industry=" + brandData.industry + "&slogan=" + brandData.slogan + "&logo=" + brandData.logo + "&mainColor=" + brandData.mainColor + "&supportingColor=" + brandData.supportingColor + "&images=" + brandData.images);
   },

@@ -25,11 +25,25 @@ export default withAuth(
     }
 
     login = async () => {
-      this.props.auth.login('/');
+      this.props.auth.login('/home');
     };
 
     logout = async () => {
       this.props.auth.logout('/');
+    };
+    
+    handleFormSubmit = event => {
+      event.preventDefault();
+      if (this.state.email && this.state.password) {
+        API.saveUser({
+          email: this.state.email,
+          password: this.state.password,
+        })
+          .then(window.location.assign("/home"))
+          //.then(res => this.loadBrands())
+          //.then(res => this.login())
+          .catch(err => console.log(err));
+      }
     };
 
     render() {
@@ -47,10 +61,6 @@ export default withAuth(
         </div>
       ) : (
         <div>
-          <p className="lead">
-            If you are a staff member, please get your credentials from your
-            supervisor
-          </p>
           <button className="btn btn-dark btn-lg" onClick={this.login}>
             Login
           </button>
@@ -65,18 +75,13 @@ export default withAuth(
            {/* <button onClick={this.logout}>Logout</button>; */}
          </header>
          <div className="color-change-5x">
-             <div className="login_links">
-                 <a href="#login">Login</a>
-                 <a href="#signup">Sign Up</a>
-             </div>
          <div className="info">
            <h2>Welcome to Design Dash!</h2>
              <p>Here you can save multiple company's branding information. Ranging from colors, logos, slogan, and industry, Design Dash is the easiest way to manage and share information with your team.</p>
              <p>Design Dash also allows you to create a brand image. Search for photos, colors, and inspiration to guide your brand identity. </p>
              <p>Create, manage, and store your and others' brand so your team can expound on the baseline and create more marketing materials.</p>
-              
              <hr/>
-             <div className="col_half">
+             <div>
                  <form>
                      <h2 id="signup">Sign Up</h2>
                      <Input
@@ -99,37 +104,10 @@ export default withAuth(
                      </FormBtn>
                 </form>
             </div>
-            {/* <button className="btn"><Link to="/home">Login</Link></button> */}
-            <div className="col_half">
-                <form>
-                    <h2 id="login">Login</h2>
-                    <Input
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    name="email"
-                    placeholder="Email Address(Required)"
-                    />
-                    <Input
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                    name="password"
-                    placeholder="Password(Required)"
-                    />
-                    <FormBtn
-                     className="btn"
-                    //  disabled={!(this.state.email && this.state.password)}
-                     onClick={this.login}>
-                     Log In
-                     </FormBtn>
-                    {/* <button className="btn"><Link to="/home">Login</Link></button> */}
-                </form>
-            </div>
-            <p><a href="/">Forgot Password?</a></p>
           </div>
         </div>
       </div>
-          {mainContent}
-        </div>
+    </div>
       );
     }
   }
