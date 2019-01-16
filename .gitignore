@@ -25,3 +25,7 @@ yarn-error.log*
 node_modules
 .DS_Store
 .env
+
+# for heroku build
+package-lock.json
+yarn-lock
