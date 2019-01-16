@@ -27,5 +27,5 @@ node_modules
 .env
 
 # for heroku build
-package-lock.json
 yarn.lock
+/client/yarn.lock
