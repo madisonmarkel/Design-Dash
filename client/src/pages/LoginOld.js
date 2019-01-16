@@ -49,24 +49,6 @@ export default withAuth(
     render() {
       if (this.state.authenticated === null) return null;
 
-      const mainContent = this.state.authenticated ? (
-        <div>
-          <p className="lead">
-            You have entered the staff portal,{' '}
-            <Link to="/staff">click here</Link>
-          </p>
-          <button className="btn btn-light btn-lg" onClick={this.logout}>
-            Logout
-          </button>
-        </div>
-      ) : (
-        <div>
-          <button className="btn btn-dark btn-lg" onClick={this.login}>
-            Login
-          </button>
-        </div>
-      );
-
       return (
         <div className="jumbotron">
           <div className="App">
