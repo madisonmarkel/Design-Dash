@@ -28,4 +28,4 @@ node_modules
 
 # for heroku build
 package-lock.json
-yarn-lock
+yarn.lock
