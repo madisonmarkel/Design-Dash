@@ -22,7 +22,7 @@ export default withAuth(
       }
   
       login = async () => {
-        this.props.auth.login('/');
+        this.props.auth.login('/login');
       };
   
       logout = async () => {

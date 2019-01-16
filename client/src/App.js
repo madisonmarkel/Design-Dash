@@ -46,7 +46,7 @@ function onAuthRequired({history}) {
            <SecureRoute exact path="/photo-search" component={PixabayPage} />
            <SecureRoute exact path="/color-search" component={ColorPage} />
            <SecureRoute exact path="/photo-storage" component={AWSPhotoStorage} />
-           <Route path="/" component={LoginOld}/>
+           <Route path="/" exact={true} component={LoginOld}/>
            <Route 
               path="/login" 
               render={() => (
