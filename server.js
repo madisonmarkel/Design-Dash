@@ -30,9 +30,13 @@ app.use(cors());
 //=================================================================================================================
 // ============================================ AWS
 // configure the keys for accessing AWS
+
+var accessKeyId = process.env.REACT_APP_AWS_ACCESS_KEY_ID;
+var secretAccessKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
+
 AWS.config.update({
-  accessKeyId: REACT_APP_AWS_ACCESS_KEY_ID,
-  secretAccessKey: REACT_APP_AWS_SECRET_ACCESS_KEY
+  accessKeyId: accessKeyId,
+  secretAccessKey: secretAccessKey
 });
 
 // configure AWS to work with promises
