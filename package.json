@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "proxy": "http://localhost:3001/",
   "scripts": {
-    "client": "cd client && yarn start",
+    "client": "cd client && npm run install && yarn start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
