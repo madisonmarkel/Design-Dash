@@ -75,7 +75,7 @@ class Brands extends Component {
                 ))}
               </YourBrands>
             ) : (
-              <h3><Link to={"/home"}>Add a Brand</Link></h3>
+              <h3><Link to={"/add-brand"}>Add a Brand</Link></h3>
             )}
             </div>
           </div>
