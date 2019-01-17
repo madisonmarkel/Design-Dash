@@ -154,6 +154,7 @@ code {
 /* HOME */
   .home {
     padding:1em 1em 0;
+    width:60em;
   }
   Input {
     width: 45em;
@@ -221,6 +222,7 @@ code {
   .awsFiles {
     max-width:10em;
     margin-right:1em;
+    margin-bottom: 1em;
   }
 
   /* MODAL */
